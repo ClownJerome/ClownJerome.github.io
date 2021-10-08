@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://clownjerome.github.io</id>
     <title>陈思羽</title>
-    <updated>2021-10-08T07:37:18.627Z</updated>
+    <updated>2021-10-08T07:45:47.317Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://clownjerome.github.io"/>
     <link rel="self" href="https://clownjerome.github.io/atom.xml"/>
@@ -16,123 +16,155 @@
         <link href="https://clownjerome.github.io/post/html-chang-yong-zi-ti-dai-ma-zhai-zi-csdn/">
         </link>
         <updated>2021-10-08T06:38:39.000Z</updated>
-        <content type="html"><![CDATA[<p>常用字体<br>
-<FONT style="FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"><B>常用字体</B></FONT></p>
-<p><em>朋友别哭</em></p>
-<P align=center><FONT style="FONT-WEIGHT: bolder; FONT-SIZE: 70px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 450px; POSITION: relative" color=#3333cc>朋友别哭</FONT></CAPTION> <BR></CAPTION></P>
-<p>总有一天等到你！</p>
-<P align=center><FONT style="FONT-WEIGHT: bolder; FONT-SIZE: 50px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 500px; POSITION: relative">
-<P><FONT color=#ff00ff>总有一天等到你！ </FONT></P></FONT></CAPTION>
-<DIV></DIV><BR><BR><BR>
-<p>华文行楷！<br>
-</B><BR></B><FONT style="FONT-SIZE: 50pt; FILTER: shadow(color=#af2dco); WIDTH: 100%; COLOR: #730404; LINE-HEIGHT: 100%; FONT-FAMILY: 华文行楷" size=6>华文行楷！</FONT></p>
-<DIV></DIV><BR><BR></DIV>
-<CENTER>
-<DIV style="FONT-SIZE: 52pt; FILTER: glow(color=ffff00, strength=5); WIDTH: 350px; COLOR: red; FONT-FAMILY: Arial; POSITION: relative">圈边的字</DIV></CENTER><BR></DIV>
-<p>大家好！</p>
-<CENTER><FONT style="FONT-SIZE: 60pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"><B>
-<P>大家好！</P></B></FONT></CENTER></DIV>
-<p>一声问候...<br>
-<FONT style="FONT-SIZE: 55pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #f90b46; LINE-HEIGHT: 150%; FONT-FAMILY: 隶书"><B>一声问候...</B></FONT></DIV></p>
-<p><FONT style="FONT-WEIGHT: bolder; FONT-SIZE: 70px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 450px; POSITION: relative" color=#3333cc>别忘了,,,,</FONT></CAPTION> <BR></CAPTION></P><BR></DIV></p>
-<p>有空来坐坐*，，</p>
-<DIV style="FILTER: shadow(color=#6495ED, strength=60); WIDTH: 480px"><FONT face=华文彩云 color=#9932cc size=7><B>
-<CENTER><BR>有空来坐坐*，，</CENTER>
-<CENTER></B>&nbsp;</CENTER></FONT></DIV></DIV>
-<p>朋友，欢迎您的到来<sub>*.</sub>.<br>
-朋友，欢迎您的到来<sub>*.</sub>.</p>
-<CENTER>
-<MARQUEE scrollAmount=2 direction=down height=60>
-<CENTER><FONT face=华文彩云 color=#da70d6 size=6><B>朋友，欢迎您的到来~~~~</FONT></CENTER></B></MARQUEE>
-<CENTER>
-<MARQUEE scrollAmount=2 direction=up height=60>
-<CENTER><FONT face=华文彩云 color=#da70d6 size=6><B>朋友，欢迎您的到来~~~~</FONT></CENTER></B></MARQUEE></CENTER></DIV>
-<P></P></CENTER>
-<p>圈边的字</p>
-<DIV align=center>
-<DIV style="FILTER: shadow(color=#c299ff, strength=40); WIDTH: 480px"><FONT style="FONT-WEIGHT: normal; FONT-SIZE: 150pt; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal" face=华文彩云 color=#fff000>柳</FONT> <BR></DIV></DIV></DIV>
-<p>HTML标签！<br>
-<FONT style="FONT-SIZE: 30pt; FILTER: shadow(color=red); WIDTH: 100%; COLOR: green; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"><B>HTML标签！</B></FONT><BR></DIV></p>
-<p><MARQUEE width=250 height=50><IMG src="http://www.dabaoku.com/gif/154/gif034.gif"><FONT face=隶书 color=#ff0000 size=7> 查看论坛限制<IMG src="http://www.dabaoku.com/gif/154/gif034.gif"></FONT></MARQUEE></FONT><br>
-<MARQUEE direction=right width=250 height=50><IMG src="http://www.dabaoku.com/gif/154/gif033.gif"><FONT face=隶书 color=#ff0000 size=7> 查看论坛限制<IMG src="http://www.dabaoku.com/gif/154/gif033.gif"></FONT></MARQUEE></FONT></DIV></p>
-<p>巍巍大山*<br>
-<MARQUEE direction=up></p>
-<TABLE cellSpacing=0 cellPadding=0 align=center background=http://xz7.2000y.net/admin/uploadfile/20044119194846010.jpg>
-<TBODY>
-<TR>
-<TD style="FILTER: chroma(color=#336699)">
-<TABLE align=center bgColor=lime>
-<TBODY>
-<TR>
-<TD align=middle><FONT style="FONT-SIZE: 60pt" face=华文行楷 color=#336699>巍巍大山、</FONT></TD></TR></TBODY></TABLE></FONT></TD></TR></TBODY></TABLE></FONT></MARQUEE></DIV>
-<p>落入凡间的精灵<br>
-</B><BR><FONT style="FONT-SIZE: 55pt; FILTER: shadow(color=apar); WIDTH: 100%; COLOR: #00ff00; LINE-HEIGHT: 100%" face=汉鼎繁随意 size=6>落入凡间的精灵</FONT><FONT style="FONT-SIZE: 55pt; FILTER: shadow(color=apar); WIDTH: 100%; COLOR: #ff00ff; LINE-HEIGHT: 100%; FONT-FAMILY: 汉鼎繁中变" size=6></FONT><FONT color=#ff00ff> </FONT></p>
-<DIV></DIV>
-<P></P>
-<p>落 入 凡 间 的 精 灵</p>
-<CENTER><FONT face=隶书 color=red size=15>
-<MARQUEE direction=up behavior=alternate width=60 height=120>落</MARQUEE><FONT color=yellow>
-<MARQUEE direction=up behavior=alternate width=60 height=80>入</MARQUEE><FONT color=brown>
-<MARQUEE direction=up behavior=alternate width=60 height=120>凡</MARQUEE><FONT color=green>
-<MARQUEE direction=up behavior=alternate width=60 height=80>间</MARQUEE><FONT color=orange>
-<MARQUEE direction=up behavior=alternate width=60 height=120>的</MARQUEE><FONT color=yellow>
-<MARQUEE direction=up behavior=alternate width=60 height=80>精</MARQUEE><FONT color=orange>
-<MARQUEE direction=up behavior=alternate width=60 height=120>灵</MARQUEE></FONT></B></MARQUEE></FONT></CENTER></FONT></FONT></FONT></FONT></FONT></FONT>
-<p>想念绿色的春天</p>
-<P align=center><FONT style="FONT-SIZE: 60pt; FILTER: shadow(color=lime#b0c4de); WIDTH: 100%; COLOR: green; LINE-HEIGHT: 150%; FONT-FAMILY: 华文行楷"><B>想念绿色的春天</FONT></B></P>
-<p>躲藏在感情的背后</p>
-<P align=center><FONT style="FONT-SIZE: 35pt; FILTER: glow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 楷体_GB2312">
-<CENTER>
-<P><B><FONT size=7>躲藏在感情的背后 </FONT></B></P>
-<p>爱在深秋</p>
-<P align=center><FONT style="FONT-SIZE: 45pt; FILTER: shadow(color=#6495ED,strength=15); WIDTH: 100%; COLOR: #00ffff; LINE-HEIGHT: 150%; FONT-FAMILY: 方正舒体">爱在深秋</FONT></P>
-<p>爱在深秋</p>
-<P align=center><FONT style="FILTER: shadow(color=RED); WIDTH: 100%; COLOR: yellow; LINE-HEIGHT: 150%; FONT-FAMILY: 楷体_GB2312" size=6>
-<P align=center><B>爱在深秋</B></P>
-<p>仿佛<br>
-成熟的季节成熟这一段情缘</p>
-<P align=center><FONT style="FONT-SIZE: 25pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #00ccff; LINE-HEIGHT: 150%; FONT-FAMILY: 华文行楷"><B>仿佛<BR>成熟的季节成熟这一段情缘</B></FONT> 
-<p>编辑</p>
-<CENTER><FONT style="FONT-SIZE: 50pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #6495ed; LINE-HEIGHT: 150%; face: 新宋体"><B>编辑</B></FONT></CENTER>
-<p>欢迎来到这里！<br>
-</B><FONT style="FONT-SIZE: 50pt; FILTER: shadow(color=#af2dco); WIDTH: 100%; COLOR: #730404; LINE-HEIGHT: 100%; FONT-FAMILY: 华文行楷" size=6>欢迎来到这里！</FONT></p>
-<DIV></DIV><BR><BR>
-<p>大家好！<br>
-</B></p>
-<CENTER><FONT style="FONT-SIZE: 60pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"><B>
-<P>大家好！</P></B></FONT></CENTER>
-<p>这里有美丽的风景<br>
-<FONT style="FONT-SIZE: 45pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #f90b46; LINE-HEIGHT: 150%; FONT-FAMILY: 隶书"><B>这里有美丽的风景</B></FONT></p>
-<CENTER><FONT face=隶书 color=red size=15>
-<MARQUEE direction=up behavior=alternate width=60 height=120>祝</MARQUEE><FONT color=yellow>
-<MARQUEE direction=up behavior=alternate width=60 height=80>大</MARQUEE><FONT color=brown>
-<MARQUEE direction=up behavior=alternate width=60 height=120>家</MARQUEE><FONT color=green>
-<MARQUEE direction=up behavior=alternate width=60 height=80>周</MARQUEE><FONT color=orange>
-<MARQUEE direction=up behavior=alternate width=60 height=120>末</MARQUEE><FONT color=yellow>
-<MARQUEE direction=up behavior=alternate width=60 height=80>愉</MARQUEE><FONT color=orange>
-<MARQUEE direction=up behavior=alternate width=60 height=120>快</MARQUEE></FONT></B></MARQUEE></FONT></CENTER></FONT></FONT></FONT></FONT></FONT></FONT>
-<p>大家好!<em>!</em><br>
-大家好!<sup>!</sup><br>
-<MARQUEE scrollAmount=2 direction=down height=60></p>
-<CENTER><FONT face=隶书 color=#f73809 size=7><B>大家好!*!*</FONT></CENTER></B></MARQUEE>
-<CENTER>
-<MARQUEE scrollAmount=2 direction=up height=60>
-<CENTER><FONT face=华文彩云 color=#4db361 size=6><B>大家好!^!^</FONT></CENTER></B></MARQUEE></CENTER>
-<DIV></DIV><BR><BR><BR><BR>
-<CENTER></CENTER>
-<p>朋友您辛苦了!<br>
-<MARQUEE direction=up></p>
-<TABLE cellSpacing=0 cellPadding=0 align=center background=http://znrs.2000y.net/UploadFile/2004-5/2004510115258900.jpg>
-<TBODY>
-<TR>
-<TD style="FILTER: chroma(color=#336699)">
-<TABLE align=center bgColor=red>
-<TBODY>
-<TR>
-<TD align=middle><FONT style="FONT-SIZE: 60pt" face=华文行楷 color=#336699>朋友您辛苦了!</FONT></TD></TR></TBODY></TABLE></FONT></TD></TR></TBODY></TABLE></FONT></MARQUEE></DIV>
-<p>这里是你我的家<br>
-<FONT size=7><FONT color=#ff0000>这</FONT><FONT color=#d52a00>里</FONT><FONT color=#ab5400>是</FONT><FONT color=#817e00>你</FONT><FONT color=#57a800>我</FONT><FONT color=#2dd200>的家</FONT></FONT></p>
-<CENTER><FONT style="FONT-SIZE: 40pt; FILTER: glow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云"><B>一杯热茶~*</B></FONT></CENTER></DIV>]]></content>
+        <content type="html"><![CDATA[<pre><code class="language-html">常用字体
+&lt;FONT style=&quot;FONT-SIZE: 40pt; FILTER: shadow(color=green); WIDTH: 100%; COLOR: white; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云&quot;&gt;&lt;B&gt;常用字体&lt;/B&gt;&lt;/FONT&gt;  
+
+*朋友别哭*
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-WEIGHT: bolder; FONT-SIZE: 70px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 450px; POSITION: relative&quot; color=#3333cc&gt;朋友别哭&lt;/FONT&gt;&lt;/CAPTION&gt; &lt;BR&gt;&lt;/CAPTION&gt;&lt;/P&gt;
+
+总有一天等到你！
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-WEIGHT: bolder; FONT-SIZE: 50px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 500px; POSITION: relative&quot;&gt;
+&lt;P&gt;&lt;FONT color=#ff00ff&gt;总有一天等到你！ &lt;/FONT&gt;&lt;/P&gt;&lt;/FONT&gt;&lt;/CAPTION&gt;
+&lt;DIV&gt;&lt;/DIV&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;
+
+华文行楷！
+&lt;/B&gt;&lt;BR&gt;&lt;/B&gt;&lt;FONT style=&quot;FONT-SIZE: 50pt; FILTER: shadow(color=#af2dco); WIDTH: 100%; COLOR: #730404; LINE-HEIGHT: 100%; FONT-FAMILY: 华文行楷&quot; size=6&gt;华文行楷！&lt;/FONT&gt;
+&lt;DIV&gt;&lt;/DIV&gt;&lt;BR&gt;&lt;BR&gt;&lt;/DIV&gt;
+
+&lt;CENTER&gt;
+&lt;DIV style=&quot;FONT-SIZE: 52pt; FILTER: glow(color=ffff00, strength=5); WIDTH: 350px; COLOR: red; FONT-FAMILY: Arial; POSITION: relative&quot;&gt;圈边的字&lt;/DIV&gt;&lt;/CENTER&gt;&lt;BR&gt;&lt;/DIV&gt;
+
+大家好！
+&lt;CENTER&gt;&lt;FONT style=&quot;FONT-SIZE: 60pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云&quot;&gt;&lt;B&gt;
+&lt;P&gt;大家好！&lt;/P&gt;&lt;/B&gt;&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/DIV&gt;
+
+一声问候...
+&lt;FONT style=&quot;FONT-SIZE: 55pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #f90b46; LINE-HEIGHT: 150%; FONT-FAMILY: 隶书&quot;&gt;&lt;B&gt;一声问候...&lt;/B&gt;&lt;/FONT&gt;&lt;/DIV&gt;
+
+&lt;FONT style=&quot;FONT-WEIGHT: bolder; FONT-SIZE: 70px; FILTER: blur(add=1, direction=45,strength=10); WIDTH: 450px; POSITION: relative&quot; color=#3333cc&gt;别忘了,,,,&lt;/FONT&gt;&lt;/CAPTION&gt; &lt;BR&gt;&lt;/CAPTION&gt;&lt;/P&gt;&lt;BR&gt;&lt;/DIV&gt;
+
+有空来坐坐*，，
+&lt;DIV style=&quot;FILTER: shadow(color=#6495ED, strength=60); WIDTH: 480px&quot;&gt;&lt;FONT face=华文彩云 color=#9932cc size=7&gt;&lt;B&gt;
+&lt;CENTER&gt;&lt;BR&gt;有空来坐坐*，，&lt;/CENTER&gt;
+&lt;CENTER&gt;&lt;/B&gt;&amp;nbsp;&lt;/CENTER&gt;&lt;/FONT&gt;&lt;/DIV&gt;&lt;/DIV&gt;
+
+朋友，欢迎您的到来~*.~.
+朋友，欢迎您的到来~*.~.
+&lt;CENTER&gt;
+&lt;MARQUEE scrollAmount=2 direction=down height=60&gt;
+&lt;CENTER&gt;&lt;FONT face=华文彩云 color=#da70d6 size=6&gt;&lt;B&gt;朋友，欢迎您的到来~~~~&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/B&gt;&lt;/MARQUEE&gt;
+&lt;CENTER&gt;
+&lt;MARQUEE scrollAmount=2 direction=up height=60&gt;
+&lt;CENTER&gt;&lt;FONT face=华文彩云 color=#da70d6 size=6&gt;&lt;B&gt;朋友，欢迎您的到来~~~~&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/B&gt;&lt;/MARQUEE&gt;&lt;/CENTER&gt;&lt;/DIV&gt;
+&lt;P&gt;&lt;/P&gt;&lt;/CENTER&gt;
+
+圈边的字
+&lt;DIV align=center&gt;
+&lt;DIV style=&quot;FILTER: shadow(color=#c299ff, strength=40); WIDTH: 480px&quot;&gt;&lt;FONT style=&quot;FONT-WEIGHT: normal; FONT-SIZE: 150pt; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-VARIANT: normal&quot; face=华文彩云 color=#fff000&gt;柳&lt;/FONT&gt; &lt;BR&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;
+
+HTML标签！
+&lt;FONT style=&quot;FONT-SIZE: 30pt; FILTER: shadow(color=red); WIDTH: 100%; COLOR: green; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云&quot;&gt;&lt;B&gt;HTML标签！&lt;/B&gt;&lt;/FONT&gt;&lt;BR&gt;&lt;/DIV&gt;
+
+&lt;MARQUEE width=250 height=50&gt;&lt;IMG src=&quot;http://www.dabaoku.com/gif/154/gif034.gif&quot;&gt;&lt;FONT face=隶书 color=#ff0000 size=7&gt; 查看论坛限制&lt;IMG src=&quot;http://www.dabaoku.com/gif/154/gif034.gif&quot;&gt;&lt;/FONT&gt;&lt;/MARQUEE&gt;&lt;/FONT&gt;
+&lt;MARQUEE direction=right width=250 height=50&gt;&lt;IMG src=&quot;http://www.dabaoku.com/gif/154/gif033.gif&quot;&gt;&lt;FONT face=隶书 color=#ff0000 size=7&gt; 查看论坛限制&lt;IMG src=&quot;http://www.dabaoku.com/gif/154/gif033.gif&quot;&gt;&lt;/FONT&gt;&lt;/MARQUEE&gt;&lt;/FONT&gt;&lt;/DIV&gt;
+
+巍巍大山*
+&lt;MARQUEE direction=up&gt;
+&lt;TABLE cellSpacing=0 cellPadding=0 align=center background=http://xz7.2000y.net/admin/uploadfile/20044119194846010.jpg&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD style=&quot;FILTER: chroma(color=#336699)&quot;&gt;
+&lt;TABLE align=center bgColor=lime&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD align=middle&gt;&lt;FONT style=&quot;FONT-SIZE: 60pt&quot; face=华文行楷 color=#336699&gt;巍巍大山、&lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;/FONT&gt;&lt;/MARQUEE&gt;&lt;/DIV&gt;
+
+落入凡间的精灵
+&lt;/B&gt;&lt;BR&gt;&lt;FONT style=&quot;FONT-SIZE: 55pt; FILTER: shadow(color=apar); WIDTH: 100%; COLOR: #00ff00; LINE-HEIGHT: 100%&quot; face=汉鼎繁随意 size=6&gt;落入凡间的精灵&lt;/FONT&gt;&lt;FONT style=&quot;FONT-SIZE: 55pt; FILTER: shadow(color=apar); WIDTH: 100%; COLOR: #ff00ff; LINE-HEIGHT: 100%; FONT-FAMILY: 汉鼎繁中变&quot; size=6&gt;&lt;/FONT&gt;&lt;FONT color=#ff00ff&gt; &lt;/FONT&gt;
+&lt;DIV&gt;&lt;/DIV&gt;
+&lt;P&gt;&lt;/P&gt;
+
+落 入 凡 间 的 精 灵
+&lt;CENTER&gt;&lt;FONT face=隶书 color=red size=15&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;落&lt;/MARQUEE&gt;&lt;FONT color=yellow&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;入&lt;/MARQUEE&gt;&lt;FONT color=brown&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;凡&lt;/MARQUEE&gt;&lt;FONT color=green&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;间&lt;/MARQUEE&gt;&lt;FONT color=orange&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;的&lt;/MARQUEE&gt;&lt;FONT color=yellow&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;精&lt;/MARQUEE&gt;&lt;FONT color=orange&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;灵&lt;/MARQUEE&gt;&lt;/FONT&gt;&lt;/B&gt;&lt;/MARQUEE&gt;&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;
+
+想念绿色的春天
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-SIZE: 60pt; FILTER: shadow(color=lime#b0c4de); WIDTH: 100%; COLOR: green; LINE-HEIGHT: 150%; FONT-FAMILY: 华文行楷&quot;&gt;&lt;B&gt;想念绿色的春天&lt;/FONT&gt;&lt;/B&gt;&lt;/P&gt;
+
+
+躲藏在感情的背后
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-SIZE: 35pt; FILTER: glow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 楷体_GB2312&quot;&gt;
+&lt;CENTER&gt;
+&lt;P&gt;&lt;B&gt;&lt;FONT size=7&gt;躲藏在感情的背后 &lt;/FONT&gt;&lt;/B&gt;&lt;/P&gt;
+
+爱在深秋
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-SIZE: 45pt; FILTER: shadow(color=#6495ED,strength=15); WIDTH: 100%; COLOR: #00ffff; LINE-HEIGHT: 150%; FONT-FAMILY: 方正舒体&quot;&gt;爱在深秋&lt;/FONT&gt;&lt;/P&gt;
+
+爱在深秋
+&lt;P align=center&gt;&lt;FONT style=&quot;FILTER: shadow(color=RED); WIDTH: 100%; COLOR: yellow; LINE-HEIGHT: 150%; FONT-FAMILY: 楷体_GB2312&quot; size=6&gt;
+&lt;P align=center&gt;&lt;B&gt;爱在深秋&lt;/B&gt;&lt;/P&gt;
+
+仿佛
+成熟的季节成熟这一段情缘
+&lt;P align=center&gt;&lt;FONT style=&quot;FONT-SIZE: 25pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #00ccff; LINE-HEIGHT: 150%; FONT-FAMILY: 华文行楷&quot;&gt;&lt;B&gt;仿佛&lt;BR&gt;成熟的季节成熟这一段情缘&lt;/B&gt;&lt;/FONT&gt; 
+
+编辑
+&lt;CENTER&gt;&lt;FONT style=&quot;FONT-SIZE: 50pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #6495ed; LINE-HEIGHT: 150%; face: 新宋体&quot;&gt;&lt;B&gt;编辑&lt;/B&gt;&lt;/FONT&gt;&lt;/CENTER&gt;
+
+
+欢迎来到这里！
+&lt;/B&gt;&lt;FONT style=&quot;FONT-SIZE: 50pt; FILTER: shadow(color=#af2dco); WIDTH: 100%; COLOR: #730404; LINE-HEIGHT: 100%; FONT-FAMILY: 华文行楷&quot; size=6&gt;欢迎来到这里！&lt;/FONT&gt;
+&lt;DIV&gt;&lt;/DIV&gt;&lt;BR&gt;&lt;BR&gt;
+
+大家好！
+&lt;/B&gt;
+&lt;CENTER&gt;&lt;FONT style=&quot;FONT-SIZE: 60pt; FILTER: shadow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云&quot;&gt;&lt;B&gt;
+&lt;P&gt;大家好！&lt;/P&gt;&lt;/B&gt;&lt;/FONT&gt;&lt;/CENTER&gt;
+
+这里有美丽的风景
+&lt;FONT style=&quot;FONT-SIZE: 45pt; FILTER: shadow(color=#AF0530); WIDTH: 100%; COLOR: #f90b46; LINE-HEIGHT: 150%; FONT-FAMILY: 隶书&quot;&gt;&lt;B&gt;这里有美丽的风景&lt;/B&gt;&lt;/FONT&gt;
+
+&lt;CENTER&gt;&lt;FONT face=隶书 color=red size=15&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;祝&lt;/MARQUEE&gt;&lt;FONT color=yellow&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;大&lt;/MARQUEE&gt;&lt;FONT color=brown&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;家&lt;/MARQUEE&gt;&lt;FONT color=green&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;周&lt;/MARQUEE&gt;&lt;FONT color=orange&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;末&lt;/MARQUEE&gt;&lt;FONT color=yellow&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=80&gt;愉&lt;/MARQUEE&gt;&lt;FONT color=orange&gt;
+&lt;MARQUEE direction=up behavior=alternate width=60 height=120&gt;快&lt;/MARQUEE&gt;&lt;/FONT&gt;&lt;/B&gt;&lt;/MARQUEE&gt;&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;&lt;/FONT&gt;
+ 
+大家好!*!*
+大家好!^!^
+&lt;MARQUEE scrollAmount=2 direction=down height=60&gt;
+&lt;CENTER&gt;&lt;FONT face=隶书 color=#f73809 size=7&gt;&lt;B&gt;大家好!*!*&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/B&gt;&lt;/MARQUEE&gt;
+&lt;CENTER&gt;
+&lt;MARQUEE scrollAmount=2 direction=up height=60&gt;
+&lt;CENTER&gt;&lt;FONT face=华文彩云 color=#4db361 size=6&gt;&lt;B&gt;大家好!^!^&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/B&gt;&lt;/MARQUEE&gt;&lt;/CENTER&gt;
+&lt;DIV&gt;&lt;/DIV&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;&lt;BR&gt;
+&lt;CENTER&gt;&lt;/CENTER&gt;
+
+朋友您辛苦了!
+&lt;MARQUEE direction=up&gt;
+&lt;TABLE cellSpacing=0 cellPadding=0 align=center background=http://znrs.2000y.net/UploadFile/2004-5/2004510115258900.jpg&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD style=&quot;FILTER: chroma(color=#336699)&quot;&gt;
+&lt;TABLE align=center bgColor=red&gt;
+&lt;TBODY&gt;
+&lt;TR&gt;
+&lt;TD align=middle&gt;&lt;FONT style=&quot;FONT-SIZE: 60pt&quot; face=华文行楷 color=#336699&gt;朋友您辛苦了!&lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;/FONT&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TBODY&gt;&lt;/TABLE&gt;&lt;/FONT&gt;&lt;/MARQUEE&gt;&lt;/DIV&gt;
+
+这里是你我的家
+&lt;FONT size=7&gt;&lt;FONT color=#ff0000&gt;这&lt;/FONT&gt;&lt;FONT color=#d52a00&gt;里&lt;/FONT&gt;&lt;FONT color=#ab5400&gt;是&lt;/FONT&gt;&lt;FONT color=#817e00&gt;你&lt;/FONT&gt;&lt;FONT color=#57a800&gt;我&lt;/FONT&gt;&lt;FONT color=#2dd200&gt;的家&lt;/FONT&gt;&lt;/FONT&gt;
+
+&lt;CENTER&gt;&lt;FONT style=&quot;FONT-SIZE: 40pt; FILTER: glow(color=black); WIDTH: 100%; COLOR: #e4dc9b; LINE-HEIGHT: 150%; FONT-FAMILY: 华文彩云&quot;&gt;&lt;B&gt;一杯热茶~*&lt;/B&gt;&lt;/FONT&gt;&lt;/CENTER&gt;&lt;/DIV&gt;</code></pre>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[每日零碎知识点Day1]]></title>
