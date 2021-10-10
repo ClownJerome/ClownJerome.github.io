@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://clownjerome.github.io/favicon.ico?v=1633756925542">
+<link rel="shortcut icon" href="https://clownjerome.github.io/favicon.ico?v=1633869704190">
 <link rel="stylesheet" href="https://clownjerome.github.io/styles/main.css">
 
 
@@ -35,7 +35,7 @@ jvis..." />
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://clownjerome.github.io">
-        <img src="https://clownjerome.github.io/images/avatar.png?v=1633756925542" class="site-logo">
+        <img src="https://clownjerome.github.io/images/avatar.png?v=1633869704190" class="site-logo">
         <h1 class="site-title">陈思羽</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -355,10 +355,10 @@ int和integer(无论new否)比，都为true，因为会把Integer自动拆箱为
 <p>Object默认9方法：getClass(),hashCode(),   equals(), clone(), toString(), notify(), notifyAll(),wait(), finalize()</p>
 <figure data-type="image" tabindex="6"><img src="https://clownjerome.github.io/post-images/1633678074505.png" alt="" loading="lazy"></figure>
 <p>身份证号表达式</p>
-<p>isIDCard=/<em>^</em>[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/</p>
-<p>isIDCard=/<em>^</em>[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/</p>
-<p>上三角：起始符号，上三角x表示以x开头<br>
-美元符号：结束符号，x美元符号表示以x结尾<br>
+<p><code>isIDCard=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/</code></p>
+<p><code>isIDCard=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/</code></p>
+<p><code>^：起始符号，^x表示以x开头</code><br>
+<code>$：结束符号，x$表示以x结尾</code><br>
 [n-m]：表示从n到m的数字<br>
 \d：表示数字，等同于[0-9]<br>
 X{m}：表示由m个X字符构成，\d{4}表示4位数字</p>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://clownjerome.github.io</id>
     <title>陈思羽</title>
-    <updated>2021-10-09T12:48:13.835Z</updated>
+    <updated>2021-10-10T12:41:49.915Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://clownjerome.github.io"/>
     <link rel="self" href="https://clownjerome.github.io/atom.xml"/>
@@ -10,6 +10,1500 @@
     <logo>https://clownjerome.github.io/images/avatar.png</logo>
     <icon>https://clownjerome.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 陈思羽</rights>
+    <entry>
+        <title type="html"><![CDATA[Java基础]]></title>
+        <id>https://clownjerome.github.io/post/java-ji-chu/</id>
+        <link href="https://clownjerome.github.io/post/java-ji-chu/">
+        </link>
+        <updated>2021-10-10T12:36:26.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="#datatype" id="back">一、数据类型</a></p>
+<p>    <a href="#bt">基本类型</a></p>
+<p>    <a href="#pt">包装类型</a></p>
+<p>    <a href="#bpt">缓存池</a></p>
+<p><a href="#st">二、String</a></p>
+<p>    <a href="#stov">概览</a></p>
+<p>    <a href="#nv">不可变的好处</a></p>
+<p>    <a href="#sss">String，StringBuffer and StringBuilder</a></p>
+<p>    <a href="#sp">String Pool</a></p>
+<p>    <a href="#ns">new S tring（“abc”）</a></p>
+<p><a href="#operation">三、运算</a></p>
+<p>     <a href="#pp">参数传递</a></p>
+<p>     <a href="#fd">float与double</a></p>
+<p>     <a href="#ltc">隐式类型转换</a></p>
+<p>     <a href="#sw">switch</a></p>
+<p><a href="#keyword">四、关键字</a></p>
+<p>     <a href="#fi">final</a></p>
+<p>     <a href="#st">static</a></p>
+<p><a href="#ob">五、Object通用方法</a></p>
+<p>     <a href="#obov">概览</a></p>
+<p>     <a href="#eq">equals（）</a></p>
+<p>     <a href="#hc">hashCode（）</a></p>
+<p>     <a href="#ts">toString（）</a></p>
+<p>     <a href="#cl">clone</a></p>
+<p><a href="#inherit">六、继承</a></p>
+<p>     <a href="#aap">访问权限</a></p>
+<p>     <a href="#acai">抽象类与接口</a></p>
+<p>     <a href="#sup">super</a></p>
+<p>     <a href="#rao">重写与重载</a></p>
+<p><a href="#ref">七、反射</a></p>
+<p><a href="#abn">八、异常</a></p>
+<p><a href="#gen">九、泛型</a></p>
+<p><a href="#note">十、注解</a></p>
+<p><a href="#pec">十一、特性</a></p>
+<p>     <a href="#jnpec">Java各版本的新特性</a></p>
+<p>     <a href="#jac">Java与C++的区别</a></p>
+<p>     <a href="#joj">JRE or JDK</a></p>
+<h2 id="datatype">一、数据类型</h2>
+<p>     <h3 id="bt">基本类型</h3></p>
+<ul>
+<li>
+<p>byte/8</p>
+</li>
+<li>
+<p>char/16</p>
+</li>
+<li>
+<p>short/16</p>
+</li>
+<li>
+<p>int/32</p>
+</li>
+<li>
+<p>float/32</p>
+</li>
+<li>
+<p>long/64</p>
+</li>
+<li>
+<p>double/64</p>
+</li>
+<li>
+<p>boolean/~</p>
+<p>boolean 只有两个值：true、false，可以使用 1 bit 来存储，但是具体大小没有明确规定。<a href="#jj" id="bjj">JVM</a> 会在编译时期将 boolean 类型的数据转换为 int，使用 1 来表示 true，0 表示 false。JVM 支持 boolean 数组，但是是通过读写 byte 数组来实现的。</p>
+</li>
+</ul>
+<p>参考文件：</p>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">Primitive Data Types</a></p>
+<p>     <h3 id="pt">包装类型</h3></p>
+<p>基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用自动装箱与拆箱完成。</p>
+<pre><code class="language-java">Integer x = 2;     // 装箱 调用了 Integer.valueOf(2)
+int y = x;         // 拆箱 调用了 X.intValue()
+</code></pre>
+<p>Java1.5以下因为不能直接地向集合(Collections)中放入原始类型值，集合只接收对象。通常这种情况下的做法，是将这些原始类型的值转换成对象，然后将这些转换的对象放入集合中。使用Integer,Double,Boolean等这些类我们可以将原始类型值转换成对应的对象。为了让代码简练，Java 1.5引入了具有在原始类型和对象类型自动转换的装箱和拆箱机制。但是自动装箱和拆箱并非完美，在使用时需要有一些注意事项，如果没有搞明白自动装箱和拆箱，可能会引起难以察觉的bug。</p>
+<h3>补充：</h3>
+<hr/>
+<h3>自动装箱和拆箱</h3>
+<p>自动装箱就是Java自动将原始类型值转换成对应的对象，比如将int的变量转换成Integer对象，这个过程叫做装箱，反之将Integer对象转换成int类型值，这个过程叫做拆箱。因为这里的装箱和拆箱是自动进行的非人为转换，所以就称作为自动装箱和拆箱。原始类型byte,short,char,int,long,float,double和boolean对应的封装类为Byte,Short,Character,Integer,Long,Float,Double,Boolean。</p>
+<p>基本类型与封装类型对应关系：</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>封装类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>自动装箱，相当于Java编译器替我们执行了 <code>Integer.valueOf(XXX);</code></p>
+<p>自动拆箱，相当于Java编译器替我们执行了<code>Integer.intValue(XXX);</code></p>
+<h3>要点</h3>
+<p>自动装箱时编译器调用valueOf将原始类型值转换成对象，同时自动拆箱时，编译器通过调用类似intValue(),doubleValue()这类的方法将对象转换成原始类型值。</p>
+<p>自动装箱是将boolean值转换成Boolean对象，byte值转换成Byte对象，char转换成Character对象，float值转换成Float对象，int转换成Integer，long转换成Long，short转换成Short，自动拆箱则是相反的操作。</p>
+<h3>何时发生自动装箱和拆箱</h3>
+<p>自动装箱和拆箱在Java中很常见，比如我们有一个方法，接受一个对象类型的参数，如果我们传递一个原始类型值，那么Java会自动将这个原始类型值转换成与之对应的对象。最经典的一个场景就是当我们向<a href="#arr" id="barr">ArrayList</a>这样的容器中增加原始类型数据时或者是创建一个参数化的类，比如下面的<a href="#tl" id="btl">ThreadLocal</a>。</p>
+<pre><code class="language-java">ArrayList&lt;Integer&gt; intList = new ArrayList&lt;Integer&gt;();
+intList.add(1); //autoboxing - primitive to object
+intList.add(2); //autoboxing
+
+ThreadLocal&lt;Integer&gt; intLocal = new ThreadLocal&lt;Integer&gt;();
+intLocal.set(4); //autoboxing
+
+int number = intList.get(0); // unboxing
+int local = intLocal.get(); // unboxing in Java
+</code></pre>
+<p>eg:自动装箱主要发生在两种情况，一种是赋值时，另一种是在方法调用的时候。</p>
+<p>赋值时</p>
+<p>这是最常见的一种情况，在Java 1.5以前我们需要手动地进行转换才行，而现在所有的转换都是由编译器来完成。</p>
+<pre><code class="language-text">//before autoboxing
+Integer iObject = Integer.valueOf(3);
+Int iPrimitive = iObject.intValue()
+
+//after java5
+Integer iObject = 3; //autobxing - primitive to wrapper conversion
+int iPrimitive = iObject; //unboxing - object to primitive conversion
+</code></pre>
+<p>方法调用时</p>
+<p>这是另一个常用的情况，当我们在方法调用时，我们可以传入原始数据值或者对象，同样编译器会帮我们进行转换。</p>
+<pre><code class="language-text">public static Integer show(Integer iParam){
+   System.out.println(&quot;autoboxing example - method invocation i: &quot; + iParam);
+   return iParam;
+}
+
+//autoboxing and unboxing in method invocation
+show(3); //autoboxing
+int result = show(3); //unboxing because return type of method is Integer
+</code></pre>
+<p>show方法接受Integer对象作为参数，当调用show(3)时，会将int值转换成对应的Integer对象，这就是所谓的自动装箱，show方法返回Integer对象，而int result = show(3);中result为int类型，所以这时候发生自动拆箱操作，将show方法的返回的Integer对象转换成int值。</p>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html">Autoboxing and Unboxing</a></p>
+<p>     <h3 id="bpt">缓存池</h3></p>
+<p>new Integer(123) 与 Integer.valueOf(123) 的区别在于：</p>
+<ul>
+<li>new Integer(123) 每次都会新建一个对象；</li>
+<li>Integer.valueOf(123) 会使用缓存池中的对象，多次调用会取得同一个对象的引用。</li>
+</ul>
+<pre><code class="language-java">Integer x = new Integer(123);
+Integer y = new Integer(123);
+System.out.println(x == y);    // false
+Integer z = Integer.valueOf(123);
+Integer k = Integer.valueOf(123);
+System.out.println(z == k);   // true
+</code></pre>
+<p>valueOf() 方法的实现比较简单，就是先判断值是否在缓存池中，如果在的话就直接返回缓存池的内容。</p>
+<pre><code class="language-java">public static Integer valueOf(int i) {
+    if (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
+</code></pre>
+<p>在 Java 8 中，Integer 缓存池的大小默认为 -128~127。</p>
+<pre><code class="language-java">static final int low = -128;
+static final int high;
+static final Integer cache[];
+
+static {
+    // high value may be configured by property
+    int h = 127;
+    String integerCacheHighPropValue =
+        sun.misc.VM.getSavedProperty(&quot;java.lang.Integer.IntegerCache.high&quot;);
+    if (integerCacheHighPropValue != null) {
+        try {
+            int i = parseInt(integerCacheHighPropValue);
+            i = Math.max(i, 127);
+            // Maximum array size is Integer.MAX_VALUE
+            h = Math.min(i, Integer.MAX_VALUE - (-low) -1);
+        } catch( NumberFormatException nfe) {
+            // If the property cannot be parsed into an int, ignore it.
+        }
+    }
+    high = h;
+
+    cache = new Integer[(high - low) + 1];
+    int j = low;
+    for(int k = 0; k &lt; cache.length; k++)
+        cache[k] = new Integer(j++);
+
+    // range [-128, 127] must be interned (JLS7 5.1.7)
+    assert IntegerCache.high &gt;= 127;
+}
+</code></pre>
+<p>编译器会在自动装箱过程调用 valueOf() 方法，因此多个值相同且值在缓存池范围内的 Integer 实例使用自动装箱来创建，那么就会引用相同的对象。</p>
+<pre><code class="language-java">Integer m = 123;
+Integer n = 123;
+System.out.println(m == n); // true
+</code></pre>
+<p>基本类型对应的缓冲池如下：</p>
+<ul>
+<li>boolean values true and false</li>
+<li>all byte values</li>
+<li>short values between -128 and 127</li>
+<li>int values between -128 and 127</li>
+<li>char in the range \u0000 to \u007F</li>
+</ul>
+<p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。</p>
+<p>在 jdk 1.8 所有的数值类缓冲池中，Integer 的缓冲池 IntegerCache 很特殊，这个缓冲池的下界是 - 128，上界默认是 127，但是这个上界是可调的，在启动jvm的时候，通过 -XX:AutoBoxCacheMax=<code>&lt;size&gt;</code> 来指定这个缓冲池的大小，该选项在 JVM 初始化的时候会设定一个名为 java.lang.IntegerCache.high 系统属性，然后 IntegerCache 初始化的时候就会读取该系统属性来决定上界。</p>
+<p><a href="https://stackoverflow.com/questions/9030817/differences-between-new-integer123-integer-valueof123-and-just-123">StackOverflow : Differences between new Integer(123), Integer.valueOf(123) and just 123 </a></p>
+<p><a href="#back">返回</a></p>
+<h2 id="st">二、String</h2>
+<p>     <h3 id="stov">概览</h3></p>
+<p>String 被声明为 final，因此它不可被继承。(Integer 等包装类也不能被继承）</p>
+<p>在 Java 8 中，String 内部使用 char 数组存储数据。</p>
+<pre><code class="language-java">public final class String
+    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+    /** The value is used for character storage. */
+    private final char value[];
+}
+</code></pre>
+<p>在 Java 9 之后，String 类的实现改用 byte 数组存储字符串，同时使用 <code>coder</code> 来标识使用了哪种编码。</p>
+<pre><code class="language-java">public final class String
+    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+    /** The value is used for character storage. */
+    private final byte[] value;
+
+    /** The identifier of the encoding used to encode the bytes in {@code value}. */
+    private final byte coder;
+}
+</code></pre>
+<p>value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 String 内部没有改变 value 数组的方法，因此可以保证 String 不可变。</p>
+<p>     <h3 id="nv">不可变的好处</h3></p>
+<p><strong>1. 可以缓存 hash 值</strong></p>
+<p>因为 String 的 <a href="#ha" id="bha">hash</a> 值经常被使用，例如 String 用做 HashMap 的 key。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<p><strong>2. String Pool 的需要</strong></p>
+<p>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。</p>
+<figure data-type="image" tabindex="1"><img src="https://clownjerome.github.io/post-images/1633869552745.png" alt="" loading="lazy"></figure>
+<p><strong>3. 安全性</strong></p>
+<p>String 经常作为参数，String 不可变性可以保证参数不可变。例如在作为网络连接参数的情况下如果 String 是可变的，那么在网络连接过程中，String 被改变，改变 String 的那一方以为现在连接的是其它主机，而实际情况却不一定是。</p>
+<p><strong>4. 线程安全</strong></p>
+<p>String 不可变性天生具备线程安全，可以在多个线程中安全地使用。</p>
+<p><a href="https://www.programcreek.com/2013/04/why-string-is-immutable-in-java/">Program Creek : Why String is immutable in Java?</a></p>
+<p>     <h3 id="sss">String, StringBuffer and StringBuilder</h3></p>
+<p><strong>1. 可变性</strong></p>
+<ul>
+<li>String 不可变</li>
+<li>StringBuffer 和 StringBuilder 可变</li>
+</ul>
+<p><strong>2. 线程安全</strong></p>
+<ul>
+<li>
+<p>String 不可变，因此是线程安全的</p>
+</li>
+<li>
+<p>StringBuilder 不是线程安全的</p>
+</li>
+<li>
+<p>StringBuffer 是线程安全的，内部使用 synchronized 进行同步</p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/2971315/string-stringbuffer-and-stringbuilder">StackOverflow : String, StringBuffer, and StringBuilder</a></p>
+<p><a href="https://www.runoob.com/java/java-stringbuffer.html">Java StringBuffer 和 StringBuilder 类 | 菜鸟教程 (runoob.com)</a></p>
+</li>
+</ul>
+<p>     <h3 id="sp">String Pool</h3></p>
+<p>字符串常量池（String Pool）保存着所有字符串字面量（literal strings），这些字面量在编译时期就确定。不仅如此，还可以使用 String 的 intern() 方法在运行过程将字符串添加到 String Pool 中。</p>
+<p>当一个字符串调用 intern() 方法时，如果 String Pool 中已经存在一个字符串和该字符串值相等（使用 equals() 方法进行确定），那么就会返回 String Pool 中字符串的引用；否则，就会在 String Pool 中添加一个新的字符串，并返回这个新字符串的引用。</p>
+<p>下面示例中，s1 和 s2 采用 new String() 的方式新建了两个不同字符串，而 s3 和 s4 是通过 s1.intern() 和 s2.intern() 方法取得同一个字符串引用。intern() 首先把 &quot;aaa&quot; 放到 String Pool 中，然后返回这个字符串引用，因此 s3 和 s4 引用的是同一个字符串。</p>
+<pre><code class="language-java">String s1 = new String(&quot;aaa&quot;);
+String s2 = new String(&quot;aaa&quot;);
+System.out.println(s1 == s2);           // false
+String s3 = s1.intern();
+String s4 = s2.intern();
+System.out.println(s3 == s4);           // true
+</code></pre>
+<p>如果是采用 &quot;bbb&quot; 这种字面量的形式创建字符串，会自动地将字符串放入 String Pool 中。</p>
+<pre><code class="language-java">String s5 = &quot;bbb&quot;;
+String s6 = &quot;bbb&quot;;
+System.out.println(s5 == s6);  // true
+</code></pre>
+<p>在 Java 7 之前，String Pool 被放在运行时常量池中，它属于永久代。而在 Java 7，String Pool 被移到堆中。这是因为永久代的空间有限，在大量使用字符串的场景下会导致 OutOfMemoryError 错误。</p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/10578984/what-is-string-interning">StackOverflow : What is String interning?(opens new window)</a></li>
+<li><a href="https://tech.meituan.com/in_depth_understanding_string_intern.html">深入解析 String#intern</a></li>
+</ul>
+<p>     <h3 id="ns">new String(&quot;abc&quot;)</h3></p>
+<p>使用这种方式一共会创建两个字符串对象（前提是 String Pool 中还没有 &quot;abc&quot; 字符串对象）。</p>
+<ul>
+<li>&quot;abc&quot; 属于字符串字面量，因此编译时期会在 String Pool 中创建一个字符串对象，指向这个 &quot;abc&quot; 字符串字面量；</li>
+<li>而使用 new 的方式会在堆中创建一个字符串对象。</li>
+</ul>
+<p>创建一个测试类，其 main 方法中使用这种方式来创建字符串对象。</p>
+<pre><code class="language-java">public class NewStringTest {
+    public static void main(String[] args) {
+        String s = new String(&quot;abc&quot;);
+    }
+}
+</code></pre>
+<p>使用 javap -verbose 进行反编译，得到以下内容：</p>
+<pre><code class="language-java">// ...
+Constant pool:
+// ...
+   #2 = Class              #18            // java/lang/String
+   #3 = String             #19            // abc
+// ...
+  #18 = Utf8               java/lang/String
+  #19 = Utf8               abc
+// ...
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: new           #2                  // class java/lang/String
+         3: dup
+         4: ldc           #3                  // String abc
+         6: invokespecial #4                  // Method java/lang/String.&quot;&lt;init&gt;&quot;:(Ljava/lang/String;)V
+         9: astore_1
+// ...
+</code></pre>
+<p>在 Constant Pool 中，#19 存储这字符串字面量 &quot;abc&quot;，#3 是 String Pool 的字符串对象，它指向 #19 这个字符串字面量。在 main 方法中，0: 行使用 new #2 在堆中创建一个字符串对象，并且使用 ldc #3 将 String Pool 中的字符串对象作为 String 构造函数的参数。</p>
+<p>以下是 String 构造函数的源码，可以看到，在将一个字符串对象作为另一个字符串对象的构造函数参数时，并不会完全复制 value 数组内容，而是都会指向同一个 value 数组。</p>
+<pre><code class="language-java">public String(String original) {
+    this.value = original.value;
+    this.hash = original.hash;
+}
+</code></pre>
+<p><a href="#back">返回</a></p>
+<h2 id="operation">运算</h2>
+<p>     <h3 id="pp">参数传递</h3></p>
+<p>Java 的参数是以值传递的形式传入方法中，而不是引用传递。</p>
+<p>以下代码中 Dog dog 的 dog 是一个指针，存储的是对象的地址。在将一个参数传入一个方法时，本质上是将对象的地址以值的方式传递到形参中。</p>
+<pre><code class="language-java">public class Dog {
+
+    String name;
+
+    Dog(String name) {
+        this.name = name;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    String getObjectAddress() {
+        return super.toString();
+    }
+}
+</code></pre>
+<p>在方法中改变对象的字段值会改变原对象该字段值，因为引用的是同一个对象。</p>
+<pre><code class="language-java">class PassByValueExample {
+    public static void main(String[] args) {
+        Dog dog = new Dog(&quot;A&quot;);
+        func(dog);
+        System.out.println(dog.getName());          // B
+    }
+
+    private static void func(Dog dog) {
+        dog.setName(&quot;B&quot;);
+    }
+}
+</code></pre>
+<p>但是在方法中将指针引用了其它对象，那么此时方法里和方法外的两个指针指向了不同的对象，在一个指针改变其所指向对象的内容对另一个指针所指向的对象没有影响。</p>
+<pre><code class="language-java">public class PassByValueExample {
+    public static void main(String[] args) {
+        Dog dog = new Dog(&quot;A&quot;);
+        System.out.println(dog.getObjectAddress()); // Dog@4554617c
+        func(dog);
+        System.out.println(dog.getObjectAddress()); // Dog@4554617c
+        System.out.println(dog.getName());          // A
+    }
+
+    private static void func(Dog dog) {
+        System.out.println(dog.getObjectAddress()); // Dog@4554617c
+        dog = new Dog(&quot;B&quot;);
+        System.out.println(dog.getObjectAddress()); // Dog@74a14482
+        System.out.println(dog.getName());          // B
+    }
+}
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/40480/is-java-pass-by-reference-or-pass-by-value">StackOverflow: Is Java “pass-by-reference” or “pass-by-value”?</a></p>
+<p>     <h3 id="fd">float 与 double</h3></p>
+<p>Java 不能隐式执行向下转型，因为这会使得精度降低。</p>
+<p>1.1 字面量属于 double 类型，不能直接将 1.1 直接赋值给 float 变量，因为这是向下转型。</p>
+<pre><code class="language-java">// float f = 1.1;
+</code></pre>
+<p>1.1f 字面量才是 float 类型。</p>
+<pre><code class="language-java">float f = 1.1f;
+</code></pre>
+<p>     <h3 id="ltc">隐式类型转换</h3></p>
+<p>因为字面量 1 是 int 类型，它比 short 类型精度要高，因此不能隐式地将 int 类型向下转型为 short 类型。</p>
+<pre><code class="language-java">short s1 = 1;
+// s1 = s1 + 1;
+</code></pre>
+<p>但是使用 += 或者 ++ 运算符会执行隐式类型转换。</p>
+<pre><code class="language-java">s1 += 1;
+s1++;
+</code></pre>
+<p>上面的语句相当于将 s1 + 1 的计算结果进行了向下转型：</p>
+<pre><code class="language-java">s1 = (short) (s1 + 1);
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/8710619/why-dont-javas-compound-assignment-operators-require-casting">StackOverflow : Why don't Java's +=, -=, *=, /= compound assignment operators require casting?</a></p>
+<p>     <h3 id="sw">switch</h3></p>
+<p>从 Java 7 开始，可以在 switch 条件判断语句中使用 String 对象。</p>
+<pre><code class="language-java">String s = &quot;a&quot;;
+switch (s) {
+    case &quot;a&quot;:
+        System.out.println(&quot;aaa&quot;);
+        break;
+    case &quot;b&quot;:
+        System.out.println(&quot;bbb&quot;);
+        break;
+}
+</code></pre>
+<p>switch 不支持 long、float、double，是因为 switch 的设计初衷是对那些只有少数几个值的类型进行等值判断，如果值过于复杂，那么还是用 if 比较合适。</p>
+<pre><code class="language-java">// long x = 111;
+// switch (x) { // Incompatible types. Found: 'long', required: 'char, byte, short, int, Character, Byte, Short, Integer, String, or an enum'
+//     case 111:
+//         System.out.println(111);
+//         break;
+//     case 222:
+//         System.out.println(222);
+//         break;
+// }
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/2676210/why-cant-your-switch-statement-data-type-be-long-java">StackOverflow : Why can't your switch statement data type be long, Java?</a></p>
+<h2 id="keyword">关键字</h2>
+<p>     <h3 id="fi">final</h3></p>
+<p><strong>1. 数据</strong></p>
+<p>声明数据为常量，可以是编译时常量，也可以是在运行时被初始化后不能被改变的常量。</p>
+<ul>
+<li>对于基本类型，final 使数值不变；</li>
+<li>对于引用类型，final 使引用不变，也就不能引用其它对象，但是被引用的对象本身是可以修改的。</li>
+</ul>
+<pre><code class="language-java">final int x = 1;
+// x = 2;  // cannot assign value to final variable 'x'
+final A y = new A();
+y.a = 1;
+</code></pre>
+<p><strong>2. 方法</strong></p>
+<p>声明方法不能被子类重写。</p>
+<p>private 方法隐式地被指定为 final，如果在子类中定义的方法和基类中的一个 private 方法签名相同，此时子类的方法不是重写基类方法，而是在子类中定义了一个新的方法。</p>
+<p><strong>3. 类</strong></p>
+<p>声明类不允许被继承。</p>
+<p>     <h3 id="st">static</h3></p>
+<p><strong>1. 静态变量</strong></p>
+<ul>
+<li>静态变量：又称为类变量，也就是说这个变量属于类的，类所有的实例都共享静态变量，可以直接通过类名来访问它。静态变量在内存中只存在一份。</li>
+<li>实例变量：每创建一个实例就会产生一个实例变量，它与该实例同生共死。</li>
+</ul>
+<pre><code class="language-java">public class A {
+
+    private int x;         // 实例变量
+    private static int y;  // 静态变量
+
+    public static void main(String[] args) {
+        // int x = A.x;  // Non-static field 'x' cannot be referenced from a static context
+        A a = new A();
+        int x = a.x;
+        int y = A.y;
+    }
+}
+</code></pre>
+<p><strong>2. 静态方法</strong></p>
+<p>静态方法在类加载的时候就存在了，它不依赖于任何实例。所以静态方法必须有实现，也就是说它不能是抽象方法。</p>
+<pre><code class="language-java">public abstract class A {
+    public static void func1(){
+    }
+    // public abstract static void func2();  // Illegal combination of modifiers: 'abstract' and 'static'
+}
+</code></pre>
+<p>只能访问所属类的静态字段和静态方法，方法中不能有 this 和 super 关键字，因为这两个关键字与具体对象关联。</p>
+<pre><code class="language-java">public class A {
+
+    private static int x;
+    private int y;
+
+    public static void func1(){
+        int a = x;
+        // int b = y;  // Non-static field 'y' cannot be referenced from a static context
+        // int b = this.y;     // 'A.this' cannot be referenced from a static context
+    }
+}
+</code></pre>
+<p><strong>3. 静态语句块</strong></p>
+<p>静态语句块在类初始化时运行一次。</p>
+<pre><code class="language-java">public class A {
+    static {
+        System.out.println(&quot;123&quot;);
+    }
+
+    public static void main(String[] args) {
+        A a1 = new A();
+        A a2 = new A();
+    }
+}
+123
+</code></pre>
+<p><strong>4. 静态内部类</strong></p>
+<p>非静态内部类依赖于外部类的实例，也就是说需要先创建外部类实例，才能用这个实例去创建非静态内部类。而静态内部类不需要。</p>
+<pre><code class="language-java">public class OuterClass {
+
+    class InnerClass {
+    }
+
+    static class StaticInnerClass {
+    }
+
+    public static void main(String[] args) {
+        // InnerClass innerClass = new InnerClass(); // 'OuterClass.this' cannot be referenced from a static context
+        OuterClass outerClass = new OuterClass();
+        InnerClass innerClass = outerClass.new InnerClass();
+        StaticInnerClass staticInnerClass = new StaticInnerClass();
+    }
+}
+</code></pre>
+<p>静态内部类不能访问外部类的非静态的变量和方法。</p>
+<p><strong>5. 静态导包</strong></p>
+<p>在使用静态变量和方法时不用再指明 ClassName，从而简化代码，但可读性大大降低。</p>
+<pre><code class="language-java">import static com.xxx.ClassName.*
+</code></pre>
+<p><strong>6. 初始化顺序</strong></p>
+<p>静态变量和静态语句块优先于实例变量和普通语句块，静态变量和静态语句块的初始化顺序取决于它们在代码中的顺序。</p>
+<pre><code class="language-java">public static String staticField = &quot;静态变量&quot;;
+static {
+    System.out.println(&quot;静态语句块&quot;);
+}
+public String field = &quot;实例变量&quot;;
+{
+    System.out.println(&quot;普通语句块&quot;);
+}
+</code></pre>
+<p>最后才是构造函数的初始化。</p>
+<pre><code class="language-java">public InitialOrderTest() {
+    System.out.println(&quot;构造函数&quot;);
+}
+</code></pre>
+<p>存在继承的情况下，初始化顺序为：</p>
+<ul>
+<li>
+<p>父类（静态变量、静态语句块）</p>
+</li>
+<li>
+<p>子类（静态变量、静态语句块）</p>
+</li>
+<li>
+<p>父类（实例变量、普通语句块）</p>
+</li>
+<li>
+<p>父类（构造函数）</p>
+</li>
+<li>
+<p>子类（实例变量、普通语句块）</p>
+</li>
+<li>
+<p>子类（构造函数）</p>
+<p><a href="#back">返回</a></p>
+</li>
+</ul>
+<h2 id="ob">Object 通用方法</h2>
+<p>     <h3 id="obov">概览</h3></p>
+<pre><code class="language-java">public native int hashCode()
+
+public boolean equals(Object obj)
+
+protected native Object clone() throws CloneNotSupportedException
+
+public String toString()
+
+public final native Class&lt;?&gt; getClass()
+
+protected void finalize() throws Throwable {}
+
+public final native void notify()
+
+public final native void notifyAll()
+
+public final native void wait(long timeout) throws InterruptedException
+
+public final void wait(long timeout, int nanos) throws InterruptedException
+
+public final void wait() throws InterruptedException
+</code></pre>
+<p>     <h3 id="eq">equals()</h3></p>
+<p><strong>1. 等价关系</strong></p>
+<p>两个对象具有等价关系，需要满足以下五个条件：</p>
+<p>Ⅰ 自反性</p>
+<pre><code class="language-java">x.equals(x); // true
+</code></pre>
+<p>Ⅱ 对称性</p>
+<pre><code class="language-java">x.equals(y) == y.equals(x); // true
+</code></pre>
+<p>Ⅲ 传递性</p>
+<pre><code class="language-java">if (x.equals(y) &amp;&amp; y.equals(z))
+    x.equals(z); // true;
+</code></pre>
+<p>Ⅳ 一致性</p>
+<p>多次调用 equals() 方法结果不变</p>
+<pre><code class="language-java">x.equals(y) == x.equals(y); // true
+</code></pre>
+<p>Ⅴ 与 null 的比较</p>
+<p>对任何不是 null 的对象 x 调用 x.equals(null) 结果都为 false</p>
+<pre><code class="language-java">x.equals(null); // false;
+</code></pre>
+<p><strong>2. 等价与相等</strong></p>
+<ul>
+<li>对于基本类型，== 判断两个值是否相等，基本类型没有 equals() 方法。</li>
+<li>对于引用类型，== 判断两个变量是否引用同一个对象，而 equals() 判断引用的对象是否等价。</li>
+</ul>
+<pre><code class="language-java">Integer x = new Integer(1);
+Integer y = new Integer(1);
+System.out.println(x.equals(y)); // true
+System.out.println(x == y);      // false
+</code></pre>
+<p><strong>3. 实现</strong></p>
+<ul>
+<li>检查是否为同一个对象的引用，如果是直接返回 true；</li>
+<li>检查是否是同一个类型，如果不是，直接返回 false；</li>
+<li>将 Object 对象进行转型；</li>
+<li>判断每个关键域是否相等。</li>
+</ul>
+<pre><code class="language-java">public class EqualExample {
+
+    private int x;
+    private int y;
+    private int z;
+
+    public EqualExample(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EqualExample that = (EqualExample) o;
+
+        if (x != that.x) return false;
+        if (y != that.y) return false;
+        return z == that.z;
+    }
+}
+</code></pre>
+<p>     <h3 id="hc">hashCode()</h3></p>
+<p>hashCode() 返回哈希值，而 equals() 是用来判断两个对象是否等价。等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价，这是因为计算哈希值具有随机性，两个值不同的对象可能计算出相同的哈希值。</p>
+<p>在覆盖 equals() 方法时应当总是覆盖 hashCode() 方法，保证等价的两个对象哈希值也相等。</p>
+<p>HashSet 和 HashMap 等集合类使用了 hashCode() 方法来计算对象应该存储的位置，因此要将对象添加到这些集合类中，需要让对应的类实现 hashCode() 方法。</p>
+<p>下面的代码中，新建了两个等价的对象，并将它们添加到 HashSet 中。我们希望将这两个对象当成一样的，只在集合中添加一个对象。但是 EqualExample 没有实现 hashCode() 方法，因此这两个对象的哈希值是不同的，最终导致集合添加了两个等价的对象。</p>
+<pre><code class="language-java">EqualExample e1 = new EqualExample(1, 1, 1);
+EqualExample e2 = new EqualExample(1, 1, 1);
+System.out.println(e1.equals(e2)); // true
+HashSet&lt;EqualExample&gt; set = new HashSet&lt;&gt;();
+set.add(e1);
+set.add(e2);
+System.out.println(set.size());   // 2
+</code></pre>
+<p>理想的哈希函数应当具有均匀性，即不相等的对象应当均匀分布到所有可能的哈希值上。这就要求了哈希函数要把所有域的值都考虑进来。可以将每个域都当成 R 进制的某一位，然后组成一个 R 进制的整数。</p>
+<p>R 一般取 31，因为它是一个奇素数，如果是偶数的话，当出现乘法溢出，信息就会丢失，因为与 2 相乘相当于向左移一位，最左边的位丢失。并且一个数与 31 相乘可以转换成移位和减法：<code>31*x == (x&lt;&lt;5)-x</code>，编译器会自动进行这个优化。</p>
+<pre><code class="language-java">@Override
+public int hashCode() {
+    int result = 17;
+    result = 31 * result + x;
+    result = 31 * result + y;
+    result = 31 * result + z;
+    return result;
+}
+</code></pre>
+<p>     <h3 id="ts">toString()</h3></p>
+<p>默认返回 ToStringExample@4554617c 这种形式，其中 @ 后面的数值为散列码的无符号十六进制表示。</p>
+<pre><code class="language-java">public class ToStringExample {
+
+    private int number;
+
+    public ToStringExample(int number) {
+        this.number = number;
+    }
+}
+ToStringExample example = new ToStringExample(123);
+System.out.println(example.toString());
+ToStringExample@4554617c
+</code></pre>
+<p>     <h3 id="cl">clone()</h3></p>
+<p><strong>1. cloneable</strong></p>
+<p>clone() 是 Object 的 protected 方法，它不是 public，一个类不显式去重写 clone()，其它类就不能直接去调用该类实例的 clone() 方法。</p>
+<pre><code class="language-java">public class CloneExample {
+    private int a;
+    private int b;
+}
+CloneExample e1 = new CloneExample();
+// CloneExample e2 = e1.clone(); // 'clone()' has protected access in 'java.lang.Object'
+</code></pre>
+<p>重写 clone() 得到以下实现：</p>
+<pre><code class="language-java">public class CloneExample {
+    private int a;
+    private int b;
+
+    @Override
+    public CloneExample clone() throws CloneNotSupportedException {
+        return (CloneExample)super.clone();
+    }
+}
+CloneExample e1 = new CloneExample();
+try {
+    CloneExample e2 = e1.clone();
+} catch (CloneNotSupportedException e) {
+    e.printStackTrace();
+}
+java.lang.CloneNotSupportedException: CloneExample
+</code></pre>
+<p>以上抛出了 CloneNotSupportedException，这是因为 CloneExample 没有实现 Cloneable 接口。</p>
+<p>应该注意的是，clone() 方法并不是 Cloneable 接口的方法，而是 Object 的一个 protected 方法。Cloneable 接口只是规定，如果一个类没有实现 Cloneable 接口又调用了 clone() 方法，就会抛出 CloneNotSupportedException。</p>
+<pre><code class="language-java">public class CloneExample implements Cloneable {
+    private int a;
+    private int b;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+</code></pre>
+<p><strong>2. 浅拷贝</strong></p>
+<p>拷贝对象和原始对象的引用类型引用同一个对象。</p>
+<pre><code class="language-java">public class ShallowCloneExample implements Cloneable {
+
+    private int[] arr;
+
+    public ShallowCloneExample() {
+        arr = new int[10];
+        for (int i = 0; i &lt; arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    public void set(int index, int value) {
+        arr[index] = value;
+    }
+
+    public int get(int index) {
+        return arr[index];
+    }
+
+    @Override
+    protected ShallowCloneExample clone() throws CloneNotSupportedException {
+        return (ShallowCloneExample) super.clone();
+    }
+}
+ShallowCloneExample e1 = new ShallowCloneExample();
+ShallowCloneExample e2 = null;
+try {
+    e2 = e1.clone();
+} catch (CloneNotSupportedException e) {
+    e.printStackTrace();
+}
+e1.set(2, 222);
+System.out.println(e2.get(2)); // 222
+</code></pre>
+<p><strong>3. 深拷贝</strong></p>
+<p>拷贝对象和原始对象的引用类型引用不同对象。</p>
+<pre><code class="language-java">public class DeepCloneExample implements Cloneable {
+
+    private int[] arr;
+
+    public DeepCloneExample() {
+        arr = new int[10];
+        for (int i = 0; i &lt; arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    public void set(int index, int value) {
+        arr[index] = value;
+    }
+
+    public int get(int index) {
+        return arr[index];
+    }
+
+    @Override
+    protected DeepCloneExample clone() throws CloneNotSupportedException {
+        DeepCloneExample result = (DeepCloneExample) super.clone();
+        result.arr = new int[arr.length];
+        for (int i = 0; i &lt; arr.length; i++) {
+            result.arr[i] = arr[i];
+        }
+        return result;
+    }
+}
+DeepCloneExample e1 = new DeepCloneExample();
+DeepCloneExample e2 = null;
+try {
+    e2 = e1.clone();
+} catch (CloneNotSupportedException e) {
+    e.printStackTrace();
+}
+e1.set(2, 222);
+System.out.println(e2.get(2)); // 2
+</code></pre>
+<p><strong>4. clone() 的替代方案</strong></p>
+<p>使用 clone() 方法来拷贝一个对象即复杂又有风险，它会抛出异常，并且还需要类型转换。Effective Java 书上讲到，最好不要去使用 clone()，可以使用拷贝构造函数或者拷贝工厂来拷贝一个对象。</p>
+<pre><code class="language-java">public class CloneConstructorExample {
+
+    private int[] arr;
+
+    public CloneConstructorExample() {
+        arr = new int[10];
+        for (int i = 0; i &lt; arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    public CloneConstructorExample(CloneConstructorExample original) {
+        arr = new int[original.arr.length];
+        for (int i = 0; i &lt; original.arr.length; i++) {
+            arr[i] = original.arr[i];
+        }
+    }
+
+    public void set(int index, int value) {
+        arr[index] = value;
+    }
+
+    public int get(int index) {
+        return arr[index];
+    }
+}
+CloneConstructorExample e1 = new CloneConstructorExample();
+CloneConstructorExample e2 = new CloneConstructorExample(e1);
+e1.set(2, 222);
+System.out.println(e2.get(2)); // 2
+</code></pre>
+<p><a href="#back">返回</a></p>
+<h2 id="inherit">继承</h2>
+<p>     <h3 id="aap">访问权限</h3></p>
+<p>Java 中有三个访问权限修饰符：private、protected 以及 public，如果不加访问修饰符，表示包级可见。</p>
+<p>可以对类或类中的成员（字段和方法）加上访问修饰符。</p>
+<ul>
+<li>类可见表示其它类可以用这个类创建实例对象。</li>
+<li>成员可见表示其它类可以用这个类的实例对象访问到该成员；</li>
+</ul>
+<p>protected 用于修饰成员，表示在继承体系中成员对于子类可见，但是这个访问修饰符对于类没有意义。</p>
+<p>设计良好的模块会隐藏所有的实现细节，把它的 API 与它的实现清晰地隔离开来。模块之间只通过它们的 API 进行通信，一个模块不需要知道其他模块的内部工作情况，这个概念被称为信息隐藏或封装。因此访问权限应当尽可能地使每个类或者成员不被外界访问。</p>
+<p>如果子类的方法重写了父类的方法，那么子类中该方法的访问级别不允许低于父类的访问级别。这是为了确保可以使用父类实例的地方都可以使用子类实例去代替，也就是确保满足里氏替换原则。</p>
+<p>字段决不能是公有的，因为这么做的话就失去了对这个字段修改行为的控制，客户端可以对其随意修改。例如下面的例子中，AccessExample 拥有 id 公有字段，如果在某个时刻，我们想要使用 int 存储 id 字段，那么就需要修改所有的客户端代码。</p>
+<pre><code class="language-java">public class AccessExample {
+    public String id;
+}
+</code></pre>
+<p>可以使用公有的 getter 和 setter 方法来替换公有字段，这样的话就可以控制对字段的修改行为。</p>
+<pre><code class="language-java">public class AccessExample {
+
+    private int id;
+
+    public String getId() {
+        return id + &quot;&quot;;
+    }
+
+    public void setId(String id) {
+        this.id = Integer.valueOf(id);
+    }
+}
+</code></pre>
+<p>但是也有例外，如果是包级私有的类或者私有的嵌套类，那么直接暴露成员不会有特别大的影响。</p>
+<pre><code class="language-java">public class AccessWithInnerClassExample {
+
+    private class InnerClass {
+        int x;
+    }
+
+    private InnerClass innerClass;
+
+    public AccessWithInnerClassExample() {
+        innerClass = new InnerClass();
+    }
+
+    public int getValue() {
+        return innerClass.x;  // 直接访问
+    }
+}
+</code></pre>
+<p>     <h3 id="acai">抽象类与接口</h3></p>
+<p><strong>1. 抽象类</strong></p>
+<p>抽象类和抽象方法都使用 abstract 关键字进行声明。如果一个类中包含抽象方法，那么这个类必须声明为抽象类。</p>
+<p>抽象类和普通类最大的区别是，抽象类不能被实例化，只能被继承。</p>
+<pre><code class="language-java">public abstract class AbstractClassExample {
+
+    protected int x;
+    private int y;
+
+    public abstract void func1();
+
+    public void func2() {
+        System.out.println(&quot;func2&quot;);
+    }
+}
+public class AbstractExtendClassExample extends AbstractClassExample {
+    @Override
+    public void func1() {
+        System.out.println(&quot;func1&quot;);
+    }
+}
+// AbstractClassExample ac1 = new AbstractClassExample(); // 'AbstractClassExample' is abstract; cannot be instantiated
+AbstractClassExample ac2 = new AbstractExtendClassExample();
+ac2.func1();
+</code></pre>
+<p><strong>2. 接口</strong></p>
+<p>接口是抽象类的延伸，在 Java 8 之前，它可以看成是一个完全抽象的类，也就是说它不能有任何的方法实现。</p>
+<p>从 Java 8 开始，接口也可以拥有默认的方法实现，这是因为不支持默认方法的接口的维护成本太高了。在 Java 8 之前，如果一个接口想要添加新的方法，那么要修改所有实现了该接口的类，让它们都实现新增的方法。</p>
+<p>接口的成员（字段 + 方法）默认都是 public 的，并且不允许定义为 private 或者 protected。从 Java 9 开始，允许将方法定义为 private，这样就能定义某些复用的代码又不会把方法暴露出去。</p>
+<p>接口的字段默认都是 static 和 final 的。</p>
+<pre><code class="language-java">public interface InterfaceExample {
+
+    void func1();
+
+    default void func2(){
+        System.out.println(&quot;func2&quot;);
+    }
+
+    int x = 123;
+    // int y;               // Variable 'y' might not have been initialized
+    public int z = 0;       // Modifier 'public' is redundant for interface fields
+    // private int k = 0;   // Modifier 'private' not allowed here
+    // protected int l = 0; // Modifier 'protected' not allowed here
+    // private void fun3(); // Modifier 'private' not allowed here
+}
+public class InterfaceImplementExample implements InterfaceExample {
+    @Override
+    public void func1() {
+        System.out.println(&quot;func1&quot;);
+    }
+}
+// InterfaceExample ie1 = new InterfaceExample(); // 'InterfaceExample' is abstract; cannot be instantiated
+InterfaceExample ie2 = new InterfaceImplementExample();
+ie2.func1();
+System.out.println(InterfaceExample.x);
+</code></pre>
+<p><strong>3. 比较</strong></p>
+<ul>
+<li>从设计层面上看，抽象类提供了一种 IS-A 关系，需要满足里式替换原则，即子类对象必须能够替换掉所有父类对象。而接口更像是一种 LIKE-A 关系，它只是提供一种方法实现契约，并不要求接口和实现接口的类具有 IS-A 关系。</li>
+<li>从使用上来看，一个类可以实现多个接口，但是不能继承多个抽象类。</li>
+<li>接口的字段只能是 static 和 final 类型的，而抽象类的字段没有这种限制。</li>
+<li>接口的成员只能是 public 的，而抽象类的成员可以有多种访问权限。</li>
+</ul>
+<p><strong>4. 使用选择</strong></p>
+<p>使用接口：</p>
+<ul>
+<li>需要让不相关的类都实现一个方法，例如不相关的类都可以实现 Comparable 接口中的 compareTo() 方法；</li>
+<li>需要使用多重继承。</li>
+</ul>
+<p>使用抽象类：</p>
+<ul>
+<li>需要在几个相关的类中共享代码。</li>
+<li>需要能控制继承来的成员的访问权限，而不是都为 public。</li>
+<li>需要继承非静态和非常量字段。</li>
+</ul>
+<p>在很多情况下，接口优先于抽象类。因为接口没有抽象类严格的类层次结构要求，可以灵活地为一个类添加行为。并且从 Java 8 开始，接口也可以有默认的方法实现，使得修改接口的成本也变的很低。</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html">Abstract Methods and Classes(opens new window)</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/java/l-javainterface-abstract/">深入理解 abstract class 和 interface(opens new window)</a></li>
+<li><a href="https://dzone.com/articles/when-to-use-abstract-class-and-intreface">When to Use Abstract Class and Interface(opens new window)</a></li>
+<li><a href="https://www.journaldev.com/12850/java-9-private-methods-interfaces">Java 9 Private Methods in Interfaces</a></li>
+</ul>
+<p>     <h3 id="sup">super</h3></p>
+<ul>
+<li>访问父类的构造函数：可以使用 super() 函数访问父类的构造函数，从而委托父类完成一些初始化的工作。应该注意到，子类一定会调用父类的构造函数来完成初始化工作，一般是调用父类的默认构造函数，如果子类需要调用父类其它构造函数，那么就可以使用 super() 函数。</li>
+<li>访问父类的成员：如果子类重写了父类的某个方法，可以通过使用 super 关键字来引用父类的方法实现。</li>
+</ul>
+<pre><code class="language-java">public class SuperExample {
+
+    protected int x;
+    protected int y;
+
+    public SuperExample(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public void func() {
+        System.out.println(&quot;SuperExample.func()&quot;);
+    }
+}
+public class SuperExtendExample extends SuperExample {
+
+    private int z;
+
+    public SuperExtendExample(int x, int y, int z) {
+        super(x, y);
+        this.z = z;
+    }
+
+    @Override
+    public void func() {
+        super.func();
+        System.out.println(&quot;SuperExtendExample.func()&quot;);
+    }
+}
+SuperExample e = new SuperExtendExample(1, 2, 3);
+e.func();
+SuperExample.func()
+SuperExtendExample.func()
+</code></pre>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/IandI/super.html">Using the Keyword super</a></p>
+<p>     <h3 id="rao">重写与重载</h3></p>
+<p><strong>1. 重写（Override）</strong></p>
+<p>存在于继承体系中，指子类实现了一个与父类在方法声明上完全相同的一个方法。</p>
+<p>为了满足里式替换原则，重写有以下三个限制：</p>
+<ul>
+<li>子类方法的访问权限必须大于等于父类方法；</li>
+<li>子类方法的返回类型必须是父类方法返回类型或为其子类型。</li>
+<li>子类方法抛出的异常类型必须是父类抛出异常类型或为其子类型。</li>
+</ul>
+<p>使用 @Override 注解，可以让编译器帮忙检查是否满足上面的三个限制条件。</p>
+<p>下面的示例中，SubClass 为 SuperClass 的子类，SubClass 重写了 SuperClass 的 func() 方法。其中：</p>
+<ul>
+<li>子类方法访问权限为 public，大于父类的 protected。</li>
+<li>子类的返回类型为 ArrayList<Integer>，是父类返回类型 List<Integer> 的子类。</li>
+<li>子类抛出的异常类型为 Exception，是父类抛出异常 Throwable 的子类。</li>
+<li>子类重写方法使用 @Override 注解，从而让编译器自动检查是否满足限制条件。</li>
+</ul>
+<pre><code class="language-java">class SuperClass {
+    protected List&lt;Integer&gt; func() throws Throwable {
+        return new ArrayList&lt;&gt;();
+    }
+}
+
+class SubClass extends SuperClass {
+    @Override
+    public ArrayList&lt;Integer&gt; func() throws Exception {
+        return new ArrayList&lt;&gt;();
+    }
+}
+</code></pre>
+<p>在调用一个方法时，先从本类中查找看是否有对应的方法，如果没有再到父类中查看，看是否从父类继承来。否则就要对参数进行转型，转成父类之后看是否有对应的方法。总的来说，方法调用的优先级为：</p>
+<ul>
+<li>this.func(this)</li>
+<li>super.func(this)</li>
+<li>this.func(super)</li>
+<li>super.func(super)</li>
+</ul>
+<pre><code class="language-java">/*
+    A
+    |
+    B
+    |
+    C
+    |
+    D
+ */
+
+
+class A {
+
+    public void show(A obj) {
+        System.out.println(&quot;A.show(A)&quot;);
+    }
+
+    public void show(C obj) {
+        System.out.println(&quot;A.show(C)&quot;);
+    }
+}
+
+class B extends A {
+
+    @Override
+    public void show(A obj) {
+        System.out.println(&quot;B.show(A)&quot;);
+    }
+}
+
+class C extends B {
+}
+
+class D extends C {
+}
+public static void main(String[] args) {
+
+    A a = new A();
+    B b = new B();
+    C c = new C();
+    D d = new D();
+
+    // 在 A 中存在 show(A obj)，直接调用
+    a.show(a); // A.show(A)
+    // 在 A 中不存在 show(B obj)，将 B 转型成其父类 A
+    a.show(b); // A.show(A)
+    // 在 B 中存在从 A 继承来的 show(C obj)，直接调用
+    b.show(c); // A.show(C)
+    // 在 B 中不存在 show(D obj)，但是存在从 A 继承来的 show(C obj)，将 D 转型成其父类 C
+    b.show(d); // A.show(C)
+
+    // 引用的还是 B 对象，所以 ba 和 b 的调用结果一样
+    A ba = new B();
+    ba.show(c); // A.show(C)
+    ba.show(d); // A.show(C)
+}
+</code></pre>
+<p><strong>2. 重载（Overload）</strong></p>
+<p>存在于同一个类中，指一个方法与已经存在的方法名称上相同，但是参数类型、个数、顺序至少有一个不同。</p>
+<p>应该注意的是，返回值不同，其它都相同不算是重载。</p>
+<pre><code class="language-java">class OverloadingExample {
+    public void show(int x) {
+        System.out.println(x);
+    }
+
+    public void show(int x, String y) {
+        System.out.println(x + &quot; &quot; + y);
+    }
+}
+public static void main(String[] args) {
+    OverloadingExample example = new OverloadingExample();
+    example.show(1);
+    example.show(1, &quot;2&quot;);
+}
+</code></pre>
+<p><a href="#back">返回</a></p>
+<h2 id="ref">反射</h2>
+<p>每个类都有一个 <strong>Class</strong> 对象，包含了与类有关的信息。当编译一个新类时，会产生一个同名的 .class 文件，该文件内容保存着 Class 对象。</p>
+<p>类加载相当于 Class 对象的加载，类在第一次使用时才动态加载到 JVM 中。也可以使用 <code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;)</code> 这种方式来控制类的加载，该方法会返回一个 Class 对象。</p>
+<p>反射可以提供运行时的类信息，并且这个类可以在运行时才加载进来，甚至在编译时期该类的 .class 不存在也可以加载进来。</p>
+<p>Class 和 java.lang.reflect 一起对反射提供了支持，java.lang.reflect 类库主要包含了以下三个类：</p>
+<ul>
+<li><strong>Field</strong> ：可以使用 get() 和 set() 方法读取和修改 Field 对象关联的字段；</li>
+<li><strong>Method</strong> ：可以使用 invoke() 方法调用与 Method 对象关联的方法；</li>
+<li><strong>Constructor</strong> ：可以用 Constructor 的 newInstance() 创建新的对象。</li>
+</ul>
+<p><strong>反射的优点：</strong></p>
+<ul>
+<li><strong>可扩展性</strong> ：应用程序可以利用全限定名创建可扩展对象的实例，来使用来自外部的用户自定义类。</li>
+<li><strong>类浏览器和可视化开发环境</strong> ：一个类浏览器需要可以枚举类的成员。可视化开发环境（如 IDE）可以从利用反射中可用的类型信息中受益，以帮助程序员编写正确的代码。</li>
+<li><strong>调试器和测试工具</strong> ： 调试器需要能够检查一个类里的私有成员。测试工具可以利用反射来自动地调用类里定义的可被发现的 API 定义，以确保一组测试中有较高的代码覆盖率。</li>
+</ul>
+<p><strong>反射的缺点：</strong></p>
+<p>尽管反射非常强大，但也不能滥用。如果一个功能可以不用反射完成，那么最好就不用。在我们使用反射技术时，下面几条内容应该牢记于心。</p>
+<ul>
+<li>
+<p><strong>性能开销</strong> ：反射涉及了动态类型的解析，所以 JVM 无法对这些代码进行优化。因此，反射操作的效率要比那些非反射操作低得多。我们应该避免在经常被执行的代码或对性能要求很高的程序中使用反射。</p>
+</li>
+<li>
+<p><strong>安全限制</strong> ：使用反射技术要求程序必须在一个没有安全限制的环境中运行。如果一个程序必须在有安全限制的环境中运行，如 Applet，那么这就是个问题了。</p>
+</li>
+<li>
+<p><strong>内部暴露</strong> ：由于反射允许代码执行一些在正常情况下不被允许的操作（比如访问私有的属性和方法），所以使用反射可能会导致意料之外的副作用，这可能导致代码功能失调并破坏可移植性。反射代码破坏了抽象性，因此当平台发生改变的时候，代码的行为就有可能也随着变化。</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/tutorial/reflect/index.html">Trail: The Reflection API(opens new window)</a></p>
+</li>
+<li>
+<p><a href="http://www.sczyh30.com/posts/Java/java-reflection-1/">深入解析 Java 反射（1）- 基础</a></p>
+<p><a href="#back">返回</a></p>
+</li>
+</ul>
+<h2 id="abn">异常</h2>
+<p>Throwable 可以用来表示任何可以作为异常抛出的类，分为两种： <strong>Error</strong> 和 <strong>Exception</strong>。其中 Error 用来表示 JVM 无法处理的错误，Exception 分为两种：</p>
+<ul>
+<li><strong>受检异常</strong> ：需要用 try...catch... 语句捕获并进行处理，并且可以从异常中恢复；</li>
+<li><strong>非受检异常</strong> ：是程序运行时错误，例如除 0 会引发 Arithmetic Exception，此时程序崩溃并且无法恢复。</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://clownjerome.github.io/post-images/1633869472566.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<p><a href="https://www.journaldev.com/2167/java-exception-interview-questions-and-answersl">Java Exception Interview Questions and Answers(opens new window)</a></p>
+</li>
+<li>
+<p><a href="https://www.cnblogs.com/Qian123/p/5715402.html">Java提高篇——Java 异常处理</a></p>
+<p><a href="#back">返回</a></p>
+</li>
+</ul>
+<h2 id="gen">泛型</h2>
+<pre><code class="language-java">public class Box&lt;T&gt; {
+    // T stands for &quot;Type&quot;
+    private T t;
+    public void set(T t) { this.t = t; }
+    public T get() { return t; }
+}
+</code></pre>
+<ul>
+<li>
+<p><a href="https://www.cnblogs.com/Blue-Keroro/p/8875898.html">Java 泛型详解(opens new window)</a></p>
+</li>
+<li>
+<p><a href="https://cloud.tencent.com/developer/article/1033693">10 道 Java 泛型面试题</a></p>
+<p><a href="#back">返回</a></p>
+</li>
+</ul>
+<h2 id="note">注解</h2>
+<p>Java 注解是附加在代码中的一些元信息，用于一些工具在编译、运行时进行解析和使用，起到说明、配置的功能。注解不会也不能影响代码的实际逻辑，仅仅起到辅助性的作用。</p>
+<p><a href="https://www.cnblogs.com/acm-bingzi/p/javaAnnotation.html">注解 Annotation 实现原理与自定义注解例子</a></p>
+<p><a href="#back">返回</a></p>
+<h2 id="pec">特性</h2>
+<p>     <h3 id="jnpec">Java 各版本的新特性</h3></p>
+<p><strong>New highlights in Java SE 8</strong></p>
+<ol>
+<li>Lambda Expressions</li>
+<li>Pipelines and Streams</li>
+<li>Date and Time API</li>
+<li>Default Methods</li>
+<li>Type Annotations</li>
+<li>Nashhorn JavaScript Engine</li>
+<li>Concurrent Accumulators</li>
+<li>Parallel operations</li>
+<li>PermGen Error Removed</li>
+</ol>
+<p><strong>New highlights in Java SE 7</strong></p>
+<ol>
+<li>Strings in Switch Statement</li>
+<li>Type Inference for Generic Instance Creation</li>
+<li>Multiple Exception Handling</li>
+<li>Support for Dynamic Languages</li>
+<li>Try with Resources</li>
+<li>Java nio Package</li>
+<li>Binary Literals, Underscore in literals</li>
+<li>Diamond Syntax</li>
+</ol>
+<ul>
+<li><a href="http://www.selfgrowth.com/articles/difference-between-java-18-and-java-17">Difference between Java 1.8 and Java 1.7?(opens new window)</a></li>
+<li><a href="http://www.importnew.com/19345.html">Java 8 特性</a></li>
+</ul>
+<p>     <h3 id="jac">Java 与 C++ 的区别</h3></p>
+<ul>
+<li>Java 是纯粹的面向对象语言，所有的对象都继承自 java.lang.Object，C++ 为了兼容 C 即支持面向对象也支持面向过程。</li>
+<li>Java 通过虚拟机从而实现跨平台特性，但是 C++ 依赖于特定的平台。</li>
+<li>Java 没有指针，它的引用可以理解为安全指针，而 C++ 具有和 C 一样的指针。</li>
+<li>Java 支持自动垃圾回收，而 C++ 需要手动回收。</li>
+<li>Java 不支持多重继承，只能通过实现多个接口来达到相同目的，而 C++ 支持多重继承。</li>
+<li>Java 不支持操作符重载，虽然可以对两个 String 对象执行加法运算，但是这是语言内置支持的操作，不属于操作符重载，而 C++ 可以。</li>
+<li>Java 的 goto 是保留字，但是不可用，C++ 可以使用 goto。</li>
+</ul>
+<p><a href="http://cs-fundamentals.com/tech-interview/java/differences-between-java-and-cpp.php">What are the main differences between Java and C++?</a></p>
+<p>     <h3 id="joj">JRE or JDK</h3></p>
+<ul>
+<li>
+<p>JRE：Java Runtime Environment，Java 运行环境的简称，为 Java 的运行提供了所需的环境。它是一个 JVM 程序，主要包括了 JVM 的标准实现和一些 Java 基本类库。</p>
+</li>
+<li>
+<p>JDK：Java Development Kit，Java 开发工具包，提供了 Java 的开发及运行环境。JDK 是 Java 开发的核心，集成了 JRE 以及一些其它的工具，比如编译 Java 源码的编译器 javac 等。</p>
+<p><a href="#back">返回</a></p>
+</li>
+</ul>
+<h2>本章其他知识点注释</h2>
+<h2 id="arr">Java ArrayList</h2>
+<p>ArrayList 类是一个可以动态修改的数组，与普通数组的区别就是它是没有固定大小的限制，我们可以添加或删除元素。</p>
+<p>ArrayList 继承了 AbstractList ，并实现了 List 接口。</p>
+<figure data-type="image" tabindex="3"><img src="https://clownjerome.github.io/post-images/1633869501594.png" alt="" loading="lazy"></figure>
+<p>ArrayList 类位于 java.util 包中，使用前需要引入它，语法格式如下：</p>
+<pre><code>import java.util.ArrayList; // 引入 ArrayList 类
+
+ArrayList&lt;E&gt; objectName =new ArrayList&lt;&gt;();　 // 初始化
+</code></pre>
+<ul>
+<li>E: 泛型数据类型，用于设置 objectName 的数据类型，只能为引用数据类型。</li>
+<li>objectName: 对象名。</li>
+</ul>
+<p><a href="https://www.runoob.com/java/java-arraylist.html">Java ArrayList | 菜鸟教程 (runoob.com)</a></p>
+<p><a href="https://www.runoob.com/manual/jdk11api/java.base/java/util/ArrayList.html">ArrayList (Java SE 11 &amp; JDK 11 ) (runoob.com)</a></p>
+<p><a href="#barr">返回</a></p>
+<h2 id="tl">ThreadLocal</h2>
+<p>在JDK 1.2的版本中ThreadLocal是为解决多线程程序的并发问题；在JDK5.0中，ThreadLocal已经支持泛型，该类的类名已经变为ThreadLocal<T>。API方法也相应进行了调整，新版本的API方法分别是void set(T value)、T get()以及T initialValue()。</p>
+<p>作用：</p>
+<p>通过为每个线程提供一个独立的变量副本解决了变量并发访问的冲突问题。在很多情况下，ThreadLocal比直接使用synchronized同步机制解决线程安全问题更简单，更方便，且结果程序拥有更高的并发性。</p>
+<p>应用场景：</p>
+<p>在Java的多线程编程中，为保证多个线程对共享变量的安全访问，通常会使用synchronized来保证同一时刻只有一个线程对共享变量进行操作。这种情况下可以将类变量放到ThreadLocal类型的对象中，使变量在每个线程中都有独立拷贝，不会出现一个线程读取变量时而被另一个线程修改的现象。最常见的ThreadLocal使用场景为用来解决数据库连接、Session管理等。</p>
+<p><a href="#btl">返回</a></p>
+<h2 id="ha">Hash</h2>
+<p>hash（散列、杂凑）函数，是将任意长度的数据映射到有限长度的域上。直观解释起来，就是对一串数据m进行杂糅，输出另一段固定长度的数据h，作为这段数据的特征（指纹）。散列算法最重要的用途在于给证书、文档、密码等高安全系数的内容添加加密保护。这一方面的用途主要是得益于散列算法的不可逆性，这种不可逆性体现在，你不仅不可能根据一段通过散列算法得到的指纹来获得原有的文件，也不可能简单地创造一个文件并让它的指纹与一段目标指纹相一致。散列算法的这种不可逆性维持着很多安全框架的运营。<br>
+无论数据块m有多大，其输出值h为固定长度。将m分成固定长度（如128位），依次进行hash运算，然后用不同的方法迭代即可（如前一块的hash值与后一块的hash值进行异或）。如果不够128位怎么办？用0补全或者用1补全随意，算法中约定好就可以了。</p>
+<p>抗碰撞能力：对于任意两个不同的数据块，其hash值相同的可能性极小；对于一个给定的数据块，找到和它hash值相同的数据块极为困难。</p>
+<p>抗篡改能力：对于一个数据块，哪怕只改动其一个比特位，其hash值的改动也会非常大。</p>
+<p>在用到hash进行管理的数据结构中，比如hashmap，hash值（key）存在的目的是加速键值对的查找，key的作用是为了将元素适当地放在各个桶里，对于抗碰撞的要求没有那么高。换句话说，hash出来的key，只要保证value大致均匀的放在不同的桶里就可以了。但整个算法的set性能，直接与hash值产生的速度有关，所以这时候的hash值的产生速度就尤为重要，以JDK中的String.hashCode()方法为例：</p>
+<pre><code class="language-java">    public int hashCode() {
+        int h = hash;
+ //hash default value : 0 
+        if (h == 0 &amp;&amp; value.length &gt; 0) {
+ //value : char storage
+            char val[] = value;
+
+            for (int i = 0; i &lt; value.length; i++) {
+                h = 31 * h + val[i];
+            }
+            hash = h;
+        }
+        return h;
+    }
+</code></pre>
+<p>Hash在Java中的应用<br>
+1.HashMap的复杂度<br>
+HashMap与ArrayList和LinkedList在数据复杂度的区别。下图是他们的性能对比图：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>获取</th>
+<th>查找</th>
+<th>添加/删除</th>
+<th>空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ArrayList</td>
+<td>O(1)</td>
+<td>O(1)</td>
+<td>O(N)</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td>O(N)</td>
+<td>O(N)</td>
+<td>O(1)</td>
+<td>O(N)</td>
+</tr>
+<tr>
+<td>HashMap</td>
+<td>O(N/Bucket_size)</td>
+<td>O(N/Bucket_size)</td>
+<td>O(N/Bucket_size)</td>
+<td>O(N)</td>
+</tr>
+</tbody>
+</table>
+<p>HashMap整体上性能都非常不错，但是不稳定，为O(N/Buckets)，N就是以数组中没有发生碰撞的元素，Buckets是因碰撞产生的链表。</p>
+<p>注：发生碰撞实际上是非常稀少的，所以N/Bucket_size约等于1</p>
+<p>HashMap是对Array与Link的折衷处理，Array与Link可以说是两个速度方向的极端，Array注重于数据的获取，而处理修改（添加/删除）的效率非常低；Link由于是每个对象都保持着下一个对象的指针，查找某个数据需要遍历之前所有的数据，所以效率比较低，而在修改操作中比较快。</p>
+<p>2.对key进行Hash计算<br>
+在JDK8中，由于使用了红黑树来处理大的链表开销，所以hash这边可以更加省力了，只用计算hashCode并移动到低位就可以了。</p>
+<pre><code class="language-java">static final int hash(Object key) {
+    int h;
+    //计算hashCode，并无符号移动到低位
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+}
+</code></pre>
+<p>举个例子: 363771819^(363771819 &gt;&gt;&gt; 16)</p>
+<p>0001 0101 1010 1110 1011 0111 1010 1011(363771819)<br>
+0000 0000 0000 0000 0001 0101 1010 1110(5550) XOR<br>
+--------------------------------------- =<br>
+0001 0101 1010 1110 1010 0010 0000 0101(363766277)<br>
+这样做可以实现了高地位更加均匀地混到一起。</p>
+<p>下面给出在Java中几个常用的哈希码(hashCode)的算法。</p>
+<p>Object类的hashCode. 返回对象的经过处理后的内存地址，由于每个对象的内存地址都不一样，所以哈希码也不一样。这个是native方法，取决于JVM的内部设计，一般是某种C地址的偏移。</p>
+<p>String类的hashCode. 根据String类包含的字符串的内容，根据一种特殊算法返回哈希码，只要字符串的内容相同，返回的哈希码也相同。</p>
+<p>Integer等包装类，返回的哈希码就是Integer对象里所包含的那个整数的数值，例如Integer i1=new Integer(100), i1.hashCode的值就是100 。由此可见，2个一样大小的Integer对象，返回的哈希码也一样。</p>
+<p>int，char这样的基础类，它们不需要hashCode，如果需要存储时，将进行自动装箱操作，计算方法同上。</p>
+<p>3.获取到数组的index的位置<br>
+计算了Hash，我们现在要把它插入数组中了</p>
+<pre><code class="language-java">i = (tab.length - 1) &amp; hash；
+</code></pre>
+<p>通过位运算，确定了当前的位置，因为HashMap数组的大小总是2^n，所以实际的运算就是 (0xfff…ff) &amp; hash ，这里的tab.length-1相当于一个mask，滤掉了大于当前长度位的hash，使每个i都能插入到数组中。</p>
+<p>4.生成包装类<br>
+这个对象是一个包装类，Node</p>
+<pre><code class="language-java">static class Node&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; {
+        final int hash;
+        final K key;
+        V value;
+        Node&lt;K,V&gt; next;
+        //getter and setter .etc.
+}
+</code></pre>
+<p>5.插入包装类到数组<br>
+(1)如果输入当前的位置是空的，就插进去，如图，左为插入前，右为插入后</p>
+<pre><code class="language-java">0           0
+|           |
+1 -&gt; null   1 - &gt; null
+|           |
+2 -&gt; null   2 - &gt; null
+|           | 
+..-&gt; null   ..- &gt; null
+|           | 
+i -&gt; null   i - &gt; new node
+|           |
+n -&gt; null   n - &gt; null
+</code></pre>
+<p>(2)如果当前位置已经有了node，且它们发生了碰撞，则新的放到前面，旧的放到后面，这叫做链地址法处理冲突。</p>
+<pre><code class="language-java">0           0
+|           |
+1 -&gt; null   1 - &gt; null
+|           |
+2 -&gt; null   2 - &gt; null
+|           | 
+..-&gt; null   ..- &gt; null
+|           | 
+i -&gt; old    i - &gt; new - &gt; old
+|           |
+n -&gt; null   n - &gt; null
+</code></pre>
+<p>我们可以发现，失败的hashCode算法会导致HashMap的性能由数组下降为链表，所以想要避免发生碰撞，就要提高hashCode结果的均匀性。</p>
+<p>6.扩容<br>
+如果当表中的75%已经被占用，即视为需要扩容了</p>
+<pre><code class="language-java">(threshold = capacity * load factor ) &lt; size
+</code></pre>
+<p>它主要有两个步骤：</p>
+<p>容量加倍<br>
+左移1位，就是扩大到两倍，用位运算取代了乘法运算</p>
+<pre><code class="language-java">newCap = oldCap &lt;&lt; 1;
+newThr = oldThr &lt;&lt; 1;
+</code></pre>
+<p>遍历计算Hash</p>
+<pre><code class="language-java">for (int j = 0; j &lt; oldCap; ++j) {
+        Node&lt;K,V&gt; e;
+        //如果发现当前有Bucket
+        if ((e = oldTab[j]) != null) {
+            oldTab[j] = null;
+            //如果这里没有碰撞
+            if (e.next == null)
+                //重新计算Hash，分配位置
+                newTab[e.hash &amp; (newCap - 1)] = e;
+            //这个见下面的新特性介绍，如果是树，就填入树
+            else if (e instanceof TreeNode)
+                ((TreeNode&lt;K,V&gt;)e).split(this, newTab, j, oldCap);
+            //如果是链表，就保留顺序....目前就看懂这点
+            else { // preserve order
+                Node&lt;K,V&gt; loHead = null, loTail = null;
+                Node&lt;K,V&gt; hiHead = null, hiTail = null;
+                Node&lt;K,V&gt; next;
+                do {
+                    next = e.next;
+                    if ((e.hash &amp; oldCap) == 0) {
+                        if (loTail == null)
+                            loHead = e;
+                        else
+                            loTail.next = e;
+                        loTail = e;
+                    }
+                    else {
+                        if (hiTail == null)
+                            hiHead = e;
+                        else
+                            hiTail.next = e;
+                        hiTail = e;
+                    }
+                } while ((e = next) != null);
+                if (loTail != null) {
+                    loTail.next = null;
+                    newTab[j] = loHead;
+                }
+                if (hiTail != null) {
+                    hiTail.next = null;
+                    newTab[j + oldCap] = hiHead;
+                }
+            }
+        }
+    }
+</code></pre>
+<p><a href="https://www.runoob.com/ruby/ruby-hash.html">Ruby 哈希（Hash） | 菜鸟教程 (runoob.com)</a></p>
+<p><a href="#bha">返回</a></p>
+<h2 id="jj">JVM</h2>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483934&amp;idx=1&amp;sn=41c46eceb2add54b7cde9eeb01412a90&amp;chksm=ebf6da61dc81537721d36aadb5d20613b0449762842f9128753e716ce5fefe2b659d8654c4e8&amp;scene=21#wechat_redirect">jvm系列(一):java类的加载机制 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483949&amp;idx=1&amp;sn=8b69d833bbc805e63d5b2fa7c73655f5&amp;chksm=ebf6da52dc815344add64af6fb78fee439c8c27b539b3c0e87d8f6861c8422144d516ae0a837&amp;scene=21#wechat_redirect">jvm系列(二):JVM内存结构 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483952&amp;idx=1&amp;sn=ea12792a9b7c67baddfaf425d8272d33&amp;chksm=ebf6da4fdc815359869107a4acd15538b3596ba006b4005b216688b69372650dbd18c0184643&amp;scene=21#wechat_redirect">jvm系列(三):GC算法 垃圾收集器 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483966&amp;idx=1&amp;sn=dfa3375d36aa2c0c25a775522e381e62&amp;chksm=ebf6da41dc815357e0d53c73865a23f41219e75bac5a4d510bfa31cc51594b59a20e2e4f6cb8&amp;scene=21#wechat_redirect">jvm系列(四):jvm调优-命令篇 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483986&amp;idx=1&amp;sn=a2d7c9f2e73dfcc938a3ec934b3ad3a4&amp;chksm=ebf6da2ddc81533beb5e6fb54c872b5f79524d0780c484718a57ca0712916cd67bda7dee4073&amp;scene=21#wechat_redirect">jvm系列(五):Java GC 分析 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247484023&amp;idx=1&amp;sn=39be119fdf3132240adc84a85bf8a054&amp;chksm=ebf6da08dc81531e3719389555150f2d0237554b6b6c07a123efdea7c78c0ae2f064cc577bd4&amp;scene=21#wechat_redirect">jvm系列(七):jvm调优-工具篇 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247484038&amp;idx=1&amp;sn=e083cc8b248461c8916a819119b059c3&amp;chksm=ebf6daf9dc8153ef27ecd857e6cc85372735e84042679c133892d0993074371a46dd2c28b8b3&amp;scene=21#wechat_redirect">jvm系列(八):jvm知识点总览 (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247484071&amp;idx=1&amp;sn=84604a51fd18b91f73c46507c182540a&amp;chksm=ebf6dad8dc8153cebb029372c0745a3c6570e527e1f95cee2fb9fb33c50d46c64f20722a3d96&amp;scene=21#wechat_redirect">jvm系列(十):教你如何成为Java的OOM Killer (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247484074&amp;idx=1&amp;sn=826318867783afaf99f62b38b2f5c268&amp;chksm=ebf6dad5dc8153c32a6ce0201afe310b47135b07c8bb028a8fd9df7ecaf6e60950a7847c7df5&amp;scene=21#wechat_redirect">jvm系列(十一):Java 8-从持久代到metaspace (qq.com)</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&amp;mid=2247483921&amp;idx=1&amp;sn=7bb57b405e808c369159b80b32866a1a&amp;chksm=ebf6da6edc815378b5486ca644de17f32bbdc68cc4430a9d62755cd4bdad6d04dc69f592f51c&amp;scene=21#wechat_redirect">众筹平台踩坑记 (qq.com)</a></p>
+<p><a href="http://www.ityouknow.com/jvm/2017/09/30/jvm-ppt.html">jvm 系列(十):JVM 演讲 PPT 分享 - 纯洁的微笑博客 (ityouknow.com)</a></p>
+<p><a href="#bjj">返回</a></p>
+<p><a href="#back">返回</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JAVA八股文]]></title>
         <id>https://clownjerome.github.io/post/java-ba-gu-wen/</id>
@@ -481,10 +1975,10 @@ int和integer(无论new否)比，都为true，因为会把Integer自动拆箱为
 <p>Object默认9方法：getClass(),hashCode(),   equals(), clone(), toString(), notify(), notifyAll(),wait(), finalize()</p>
 <figure data-type="image" tabindex="6"><img src="https://clownjerome.github.io/post-images/1633678074505.png" alt="" loading="lazy"></figure>
 <p>身份证号表达式</p>
-<p>isIDCard=/<em>^</em>[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/</p>
-<p>isIDCard=/<em>^</em>[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/</p>
-<p>上三角：起始符号，上三角x表示以x开头<br>
-美元符号：结束符号，x美元符号表示以x结尾<br>
+<p><code>isIDCard=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/</code></p>
+<p><code>isIDCard=/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/</code></p>
+<p><code>^：起始符号，^x表示以x开头</code><br>
+<code>$：结束符号，x$表示以x结尾</code><br>
 [n-m]：表示从n到m的数字<br>
 \d：表示数字，等同于[0-9]<br>
 X{m}：表示由m个X字符构成，\d{4}表示4位数字</p>
