@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://clownjerome.github.io</id>
     <title>陈思羽</title>
-    <updated>2021-10-11T01:27:12.710Z</updated>
+    <updated>2021-10-11T01:28:59.508Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://clownjerome.github.io"/>
     <link rel="self" href="https://clownjerome.github.io/atom.xml"/>
@@ -343,7 +343,7 @@ System.out.println(m == n); // true
 <p>value 数组被声明为 final，这意味着 value 数组初始化之后就不能再引用其它数组。并且 String 内部没有改变 value 数组的方法，因此可以保证 String 不可变。</p>
 <p>     <h3 id="nv">不可变的好处</h3></p>
 <p><strong>1. 可以缓存 hash 值</strong></p>
-<p>因为 String 的 <a href="#ha" id="bha">hash</a> 值经常被使用，例如 <a href="http://localhost:4000/post/wei-shi-me-hashmap-chang-yong-string-dui-xiang-zuo-key/">String 用做 HashMap 的 key</a>。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
+<p>因为 String 的 <a href="#ha" id="bha">hash</a> 值经常被使用，例如 <a href="https://clownjerome.github.io/post/wei-shi-me-hashmap-chang-yong-string-dui-xiang-zuo-key/">String 用做 HashMap 的 key</a>。不可变的特性可以使得 hash 值也不可变，因此只需要进行一次计算。</p>
 <p><strong>2. String Pool 的需要</strong></p>
 <p>如果一个 String 对象已经被创建过了，那么就会从 String Pool 中取得引用。只有 String 是不可变的，才可能使用 String Pool。</p>
 <figure data-type="image" tabindex="1"><img src="https://clownjerome.github.io/post-images/1633869552745.png" alt="" loading="lazy"></figure>
