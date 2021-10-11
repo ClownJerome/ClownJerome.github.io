@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://clownjerome.github.io</id>
     <title>陈思羽</title>
-    <updated>2021-10-11T01:25:52.747Z</updated>
+    <updated>2021-10-11T01:27:12.710Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://clownjerome.github.io"/>
     <link rel="self" href="https://clownjerome.github.io/atom.xml"/>
@@ -10,6 +10,71 @@
     <logo>https://clownjerome.github.io/images/avatar.png</logo>
     <icon>https://clownjerome.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 陈思羽</rights>
+    <entry>
+        <title type="html"><![CDATA[为什么 HashMap 常用 String 对象作 key]]></title>
+        <id>https://clownjerome.github.io/post/wei-shi-me-hashmap-chang-yong-string-dui-xiang-zuo-key/</id>
+        <link href="https://clownjerome.github.io/post/wei-shi-me-hashmap-chang-yong-string-dui-xiang-zuo-key/">
+        </link>
+        <updated>2021-10-11T01:06:14.000Z</updated>
+        <content type="html"><![CDATA[<p>设计 hashCode() 时最重要的因素就是对同一个对象调用 hashCode() 都应该产生相同的值。String 类型的对象对这个条件有着很好的支持，因为 String 对象的 hashCode() 值是根据 String 对象的内容计算的，并不是根据对象的地址计算。</p>
+<p>即使是Test重写了hashCode和equals 方法，也不如String高效，最关键的是String中缓存有个hash变量，它可以缓存hashCode，避免重复计算hashCode。例如，你有一个 student1对象作为map的key值，你第二次使用student1作为key值放入map中时，会再次student1的hashCode。</p>
+<p>下面是 String 类源码中的 hashCode() 方法：String 对象底层是一个 final 修饰的 char 类型的数组，hashCode() 的计算是根据字符数组的每个元素进行计算的，所以内容相同的 String 对象会产生相同的散列码。</p>
+<pre><code class="language-java">/**
+     * Returns a hash code for this string. The hash code for a
+     * {@code String} object is computed as
+     * &lt;blockquote&gt;&lt;pre&gt;
+     * s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+     * &lt;/pre&gt;&lt;/blockquote&gt;
+     * using {@code int} arithmetic, where {@code s[i]} is the
+     * &lt;i&gt;i&lt;/i&gt;th character of the string, {@code n} is the length of
+     * the string, and {@code ^} indicates exponentiation.
+     * (The hash value of the empty string is zero.)
+     *
+     * @return  a hash code value for this object.
+     */
+public int hashCode() {
+        int h = hash;     //private int hash; // Default to 0
+        if (h == 0 &amp;&amp; value.length &gt; 0) {
+            char val[] = value;    //获得 String 对象底层的字符数组
+
+            for (int i = 0; i &lt; value.length; i++) {
+                h = 31 * h + val[i];    //在计算的时候加的是 int 类型的 ascii 码
+            }
+            hash = h;
+        }
+        return h;
+    }
+</code></pre>
+<p>我们希望的是我们在用对象作为 key 时，我们在获取的时候也依然能够根据重新定义 key 获得对应的 value。就像下面这样，但是它却不能正常工作：这两个对象产生的散列码是不同的，所以在进行 equals() 判断的时候这两个对象被认定为是不同的对象，自然也就获取不到对应的 value。</p>
+<p>如果你想获得 map 中存储的“123”，那么你只有把 test 对象作为 key 才能获取到，我们试图用一种简单的方法就能让它工作，但是这显然与我们的初衷相背驰。所以非 String 类型的数据类型在判断 key 相同时所需要的条件太过苛刻。</p>
+<pre><code class="language-java">Test test = new Test();
+Map&lt;Test,String&gt; map1 = new HashMap&lt;&gt;();
+map1.put(test,&quot;123&quot;);
+
+System.out.print(map1.get(new Test()));    //我们试图取出对应的 value
+
+/**
+* 输出
+* null
+*/
+</code></pre>
+<p>但是 String 类型的对象就不一样了，内容相同的两个 String 对象具有相同的散列码，并且经过 equals() 判断后返回值为 true，所以在进行查找的时候它可以正常工作。</p>
+<pre><code class="language-java">String key = &quot;key&quot;;
+HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;();
+map.put(key,123);
+
+System.out.println(map.get(&quot;key&quot;));
+
+/**
+* 输出
+* 123
+*/
+</code></pre>
+<p>总结：在使用 String 类型的对象做 key 时我们可以只根据传入的字符串内容就能获得对应存在 map 中的 value 值，而非 String 类型的对象在获得对应的 value 时需要的条件太过苛刻，首先要保证散列码相同，并且经过 equals() 方法判断为 true 时才可以获得对应的 value。</p>
+<p>PS：<br>
+如果你想把自定义的对象作为 key，那也是可以的，你只需要重写 hashCode() 方法与 equals() 方法即可，按照你自己的意愿定义散列码。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[学习进程]]></title>
         <id>https://clownjerome.github.io/post/xue-xi-jin-cheng/</id>
