@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://clownjerome.github.io</id>
     <title>陈思羽</title>
-    <updated>2021-10-29T14:14:22.014Z</updated>
+    <updated>2021-10-29T14:21:03.641Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://clownjerome.github.io"/>
     <link rel="self" href="https://clownjerome.github.io/atom.xml"/>
@@ -10,6 +10,314 @@
     <logo>https://clownjerome.github.io/images/avatar.png</logo>
     <icon>https://clownjerome.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, 陈思羽</rights>
+    <entry>
+        <title type="html"><![CDATA[HashMap、HashSet、Hashtable]]></title>
+        <id>https://clownjerome.github.io/post/hashmaphashsethashtable/</id>
+        <link href="https://clownjerome.github.io/post/hashmaphashsethashtable/">
+        </link>
+        <updated>2021-10-29T14:15:46.000Z</updated>
+        <content type="html"><![CDATA[<h3>HashMap</h3>
+<p>重要变量：</p>
+<ul>
+<li><code>DEFAULT_INITIAL_CAPACITY</code> Table数组的初始化长度： <code>1 &lt;&lt; 4 2^4=16</code>（为什么要是 2的n次方？）</li>
+<li><code>MAXIMUM_CAPACITY</code> Table数组的最大长度： <code>1&lt;&lt;30``2^30=1073741824</code></li>
+<li><code>DEFAULT_LOAD_FACTOR</code> 负载因子：默认值为<code>0.75</code>。 当元素的总个数&gt;当前数组的长度 * 负载因子。数组会进行扩容，扩容为原来的两倍（todo：为什么是两倍？）</li>
+<li><code>TREEIFY_THRESHOLD</code> 链表树化阙值： 默认值为 <code>8</code> 。表示在一个node（Table）节点下的值的个数大于8时候，会将链表转换成为红黑树。</li>
+<li><code>UNTREEIFY_THRESHOLD</code> 红黑树链化阙值： 默认值为 <code>6</code> 。 表示在进行扩容期间，单个Node节点下的红黑树节点的个数小于6时候，会将红黑树转化成为链表。</li>
+<li><code>MIN_TREEIFY_CAPACITY = 64</code> 最小树化阈值，当Table所有元素超过改值，才会进行树化（为了防止前期阶段频繁扩容和树化过程冲突）。</li>
+</ul>
+<p>一、HashMap简介</p>
+<ol>
+<li>
+<p>HashMap是用于存储Key-Value键值对的集合；</p>
+</li>
+<li>
+<p>HashMap根据键的hashCode值存储数据，大多数情况下可以直接定位到它的值，所以具有很快的访问速度，但遍历顺序不确定；</p>
+</li>
+<li>
+<p>HashMap中键key为null的记录至多只允许一条，值value为null的记录可以有多条；</p>
+</li>
+<li>
+<p>HashMap非线程安全，即任一时刻允许多个线程同时写HashMap，可能会导致数据的不一致。</p>
+</li>
+</ol>
+<p>二、HashMap底层存储结构</p>
+<p>从整体结构上看HashMap是由数组+链表+红黑树（JDK1.8后增加了红黑树部分）实现的。</p>
+<figure data-type="image" tabindex="1"><img src="https://clownjerome.github.io/post-images/1635517131630.png" alt="" loading="lazy"></figure>
+<p>数组：</p>
+<p>HashMap是一个用于存储Key-Value键值对的集合，每一个键值对也叫做一个Entry；这些Entry分散的存储在一个数组当中，该数组就是HashMap的主干。</p>
+<figure data-type="image" tabindex="2"><img src="https://clownjerome.github.io/post-images/1635517118428.png" alt="" loading="lazy"></figure>
+<p>链表：</p>
+<p>因为数组Table的长度是有限的，使用hash函数计算时可能会出现index冲突的情况，所以我们需要链表来解决冲突；数组Table的每一个元素不单纯只是一个Entry对象，它还是一个链表的头节点，每一个Entry对象通过Next指针指向下一个Entry节点；当新来的Entry映射到冲突数组位置时，只需要插入对应的链表位置即可。</p>
+<figure data-type="image" tabindex="3"><img src="https://clownjerome.github.io/post-images/1635517101388.png" alt="" loading="lazy"></figure>
+<p>index冲突例子如下：</p>
+<p>比如调用 hashMap.put(&quot;China&quot;, 0) ，插入一个Key为“China&quot;的元素；这时候我们需要利用一个哈希函数来确定Entry的具体插入位置(index)：通过index = Hash(&quot;China&quot;)，假定最后计算出的index是2，那么Entry的插入结果如下：</p>
+<figure data-type="image" tabindex="4"><img src="https://clownjerome.github.io/post-images/1635517083789.png" alt="" loading="lazy"></figure>
+<p>但是，因为HashMap的长度是有限的，当插入的Entry越来越多时，再完美的Hash函数也难免会出现index冲突的情况。比如下面这样：</p>
+<figure data-type="image" tabindex="5"><img src="https://clownjerome.github.io/post-images/1635517068703.png" alt="" loading="lazy"></figure>
+<p>经过hash函数计算发现即将插入的Entry的index值也为2，这样就会与之前插入的Key为“China”的Entry起冲突；这时就可以用链表来解决冲突，当新来的Entry映射到冲突的数组位置时，只需要插入到对应的链表即可；此外，新来的Entry节点插入链表时使用的是“头插法”，即会插在链表的头部，因为HashMap的发明者认为后插入的Entry被查找的概率更大。</p>
+<figure data-type="image" tabindex="6"><img src="https://clownjerome.github.io/post-images/1635517053821.png" alt="" loading="lazy"></figure>
+<p>红黑树：</p>
+<p>当链表长度超过阈值（8）时，会将链表转换为红黑树，使HashMap的性能得到进一步提升。</p>
+<figure data-type="image" tabindex="7"><img src="https://clownjerome.github.io/post-images/1635517038790.png" alt="" loading="lazy"></figure>
+<p><a href="https://www.runoob.com/java/java-hashmap.html">Java HashMap | 菜鸟教程 (runoob.com)</a></p>
+<p><a href="https://www.lagou.com/lgeduarticle/18098.html">HashMap底层原理 (lagou.com)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/127147909">HashMap原理详解，看不懂算我输（附面试题） - 知乎 (zhihu.com)</a></p>
+<p><a href="https://www.cnblogs.com/LiaHon/p/11142958.html">HashMap原理(一) 概念和底层架构 - 工匠初心 - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://www.cnblogs.com/LiaHon/p/11149644.html">HashMap原理(二) 扩容机制及存取原理 - 工匠初心 - 博客园 (cnblogs.com)</a></p>
+<h3>HashSet</h3>
+<p>概述</p>
+<p>HashSet是Java集合Set的一个实现类，Set是一个接口，其实现类除HashSet之外，还有TreeSet，并继承了Collection</p>
+<p>HashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。</p>
+<p>HashSet 允许有 null 值。</p>
+<p>HashSet 是无序的，即不会记录插入的顺序。</p>
+<p>HashSet 不是线程安全的， 如果多个线程尝试同时修改 HashSet，则最终结果是不确定的。 必须在多线程访问时显式同步对 HashSet 的并发访问。</p>
+<p>HashSet 实现了 Set 接口。</p>
+<figure data-type="image" tabindex="8"><img src="https://clownjerome.github.io/post-images/1635517009744.png" alt="" loading="lazy"></figure>
+<pre><code class="language-java">public class HashSet&lt;E&gt;
+    extends AbstractSet&lt;E&gt;
+    implements Set&lt;E&gt;, Cloneable, java.io.Serializable
+{}
+</code></pre>
+<p><a href="https://www.runoob.com/java/java-hashset.html">Java HashSet | 菜鸟教程 (runoob.com)</a></p>
+<p><a href="https://www.cnblogs.com/LiaHon/p/11257805.html">Java集合 HashSet的原理及常用方法 - 工匠初心 - 博客园 (cnblogs.com)</a></p>
+<h3>HashTable</h3>
+<p>一、使用方法</p>
+<p>（1）Hashtable 是一个散列表，它存储的内容是键值对(key-value)映射。</p>
+<p>（2）Hashtable 继承于Dictionary，实现了Map、Cloneable、java.io.Serializable接口。</p>
+<p>（3）Hashtable 的函数都是同步的，这意味着它是线程安全的。它的key、value都不可以为null。</p>
+<p>如下是Hashtable 的简单使用方式：在遍历时使用是三种遍历方式来对其进行遍历</p>
+<pre><code class="language-java">package ThreeWeek;
+ 
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+ 
+public class HashTableTest {
+ 
+	public static void main(String args[]){
+		Hashtable&lt;String, Integer&gt; table = new Hashtable&lt;String, Integer&gt;();
+		
+		//[1]添加元素
+		table.put(&quot;zhangsan&quot;, 22);
+		table.put(&quot;lisi&quot;, 33);
+		table.put(&quot;wangwu&quot;, 44);
+		
+		//[2]toString()方式打印
+		System.out.println(table.toString());
+		
+		//[3]Iterator遍历方式1--键值对遍历entrySet()
+		Iterator&lt;Entry&lt;String, Integer&gt;&gt; iter = table.entrySet().iterator();
+		while(iter.hasNext()){
+			Map.Entry&lt;String, Integer&gt; entry = (Map.Entry&lt;String, Integer&gt;)iter.next();
+			String key = entry.getKey();
+			int value = entry.getValue();
+			System.out.println(&quot;entrySet:&quot;+key+&quot; &quot;+value);
+		}
+		
+		System.out.println(&quot;====================================&quot;);
+		
+		//[4]Iterator遍历方式2--key键的遍历
+		Iterator&lt;String&gt; iterator = table.keySet().iterator();
+		while(iterator.hasNext()){
+			String key = (String)iterator.next();
+			int value = table.get(key);
+			System.out.println(&quot;keySet:&quot;+key+&quot; &quot;+value);
+		}
+		
+		System.out.println(&quot;====================================&quot;);
+		
+		//[5]通过Enumeration来遍历Hashtable
+		Enumeration&lt;String&gt; enu = table.keys();
+		while(enu.hasMoreElements()) {
+		    System.out.println(&quot;Enumeration:&quot;+table.keys()+&quot; &quot;+enu.nextElement());
+		} 
+			
+	}
+}
+</code></pre>
+<p>--------------------output--------------------</p>
+<pre><code class="language-java">{zhangsan=22, lisi=33, wangwu=44}
+entrySet:zhangsan 22
+entrySet:lisi 33
+entrySet:wangwu 44
+====================================
+keySet:zhangsan 22
+keySet:lisi 33
+keySet:wangwu 44
+====================================
+Enumeration:java.util.Hashtable$Enumerator@139a55 zhangsan
+Enumeration:java.util.Hashtable$Enumerator@1db9742 lisi
+Enumeration:java.util.Hashtable$Enumerator@106d69c wangwu
+</code></pre>
+<p>二、内部原理</p>
+<p>1.继承关系</p>
+<pre><code class="language-java">java.lang.Object
+   ↳     java.util.Dictionary&lt;K, V&gt;
+         ↳     java.util.Hashtable&lt;K, V&gt;
+ 
+public class Hashtable&lt;K,V&gt; extends Dictionary&lt;K,V&gt;
+    implements Map&lt;K,V&gt;, Cloneable, java.io.Serializable { }
+</code></pre>
+<p>与HashMap不同的是Hashtable是继承Dictionary，实现了Map接口。Map是&quot;key-value键值对&quot;接口，Dictionary是声明了操作&quot;键值对&quot;函数接口的抽象类。</p>
+<p>2、构造函数</p>
+<p>（1）Hashtable中提供了四个构造函数，如下：</p>
+<pre><code class="language-java">// 默认构造函数。
+public Hashtable() 
+ 
+// 指定“容量大小”的构造函数
+public Hashtable(int initialCapacity) 
+ 
+// 指定“容量大小”和“加载因子”的构造函数
+public Hashtable(int initialCapacity, float loadFactor) 
+ 
+// 包含“子Map”的构造函数
+public Hashtable(Map&lt;? extends K, ? extends V&gt; t)
+</code></pre>
+<p>（2）上面的四个构造方法中，第三个是最重要的，指定初始化容量和构造因子</p>
+<pre><code class="language-java">public Hashtable(int initialCapacity, float loadFactor) {  
+        //验证初始容量  
+        if (initialCapacity &lt; 0)  
+            throw new IllegalArgumentException(&quot;Illegal Capacity: &quot;+  
+                                               initialCapacity);  
+        //验证加载因子  
+        if (loadFactor &lt;= 0 || Float.isNaN(loadFactor))  
+            throw new IllegalArgumentException(&quot;Illegal Load: &quot;+loadFactor);  
+  
+        if (initialCapacity==0)  
+            initialCapacity = 1;  
+          
+        this.loadFactor = loadFactor;  
+          
+        //初始化table，获得大小为initialCapacity的table数组  
+        table = new Entry[initialCapacity];  
+        //计算阀值  
+        threshold = (int)Math.min(initialCapacity * loadFactor, MAX_ARRAY_SIZE + 1);  
+        //初始化HashSeed值  
+        initHashSeedAsNeeded(initialCapacity);  
+    }  
+</code></pre>
+<p>3、成员变量</p>
+<p>（1）table是一个Entry[]数组类型，而Entry实际上就是一个单向链表。哈希表的&quot;key-value键值对&quot;都是存储在Entry数组中的。</p>
+<p>（2）count是Hashtable的大小，它是Hashtable保存的键值对的数量。</p>
+<p>（3）threshold是Hashtable的阈值，用于判断是否需要调整Hashtable的容量。threshold的值=&quot;容量*加载因子&quot;。</p>
+<p>（4）loadFactor就是加载因子。</p>
+<p>（5）modCount是用来实现fail-fast机制的</p>
+<pre><code class="language-java"> private transient Entry[] table;
+// Hashtable中元素的实际数量
+private transient int count;
+// 阈值，用于判断是否需要调整Hashtable的容量（threshold = 容量*加载因子）
+private int threshold;
+// 加载因子
+private float loadFactor;
+// Hashtable被改变的次数
+private transient int modCount = 0;
+</code></pre>
+<p>4、put和get方法</p>
+<p>（1）put方法</p>
+<p>从下面的代码中我们可以看出，Hashtable中的key和value是不允许为空的，当我们想要想Hashtable中添加元素的时候，首先计算key的hash值，然</p>
+<p>后通过hash值确定在table数组中的索引位置，最后将value值替换或者插入新的元素，如果容器的数量达到阈值，就会进行扩充。</p>
+<pre><code class="language-java">public synchronized V put(K key, V value) {  
+        // 确保value不为null  
+        if (value == null) {  
+            throw new NullPointerException();  
+        }  
+  
+        /* 
+         * 确保key在table[]是不重复的 
+         * 处理过程： 
+         * 1、计算key的hash值，确认在table[]中的索引位置 
+         * 2、迭代index索引位置，如果该位置处的链表中存在一个一样的key，则替换其value，返回旧值 
+         */  
+        Entry tab[] = table;  
+        int hash = hash(key);    //计算key的hash值  
+        int index = (hash &amp; 0x7FFFFFFF) % tab.length;     //确认该key的索引位置  
+        //迭代，寻找该key，替换  
+        for (Entry&lt;K,V&gt; e = tab[index] ; e != null ; e = e.next) {  
+            if ((e.hash == hash) &amp;&amp; e.key.equals(key)) {  
+                V old = e.value;  
+                e.value = value;  
+                return old;  
+            }  
+        }  
+  
+        modCount++;  
+        if (count &gt;= threshold) {  //如果容器中的元素数量已经达到阀值，则进行扩容操作  
+            rehash();  
+            tab = table;  
+            hash = hash(key);  
+            index = (hash &amp; 0x7FFFFFFF) % tab.length;  
+        }  
+  
+        // 在索引位置处插入一个新的节点  
+        Entry&lt;K,V&gt; e = tab[index];  
+        tab[index] = new Entry&lt;&gt;(hash, key, value, e);  
+        //容器中元素+1  
+        count++;  
+        return null;  
+    }  
+</code></pre>
+<p>（2）get方法</p>
+<p>同样也是先获得索引值，然后进行遍历，最后返回</p>
+<pre><code class="language-java">public synchronized V get(Object key) {  
+        Entry tab[] = table;  
+        int hash = hash(key);  
+        int index = (hash &amp; 0x7FFFFFFF) % tab.length;  
+        for (Entry&lt;K,V&gt; e = tab[index] ; e != null ; e = e.next) {  
+            if ((e.hash == hash) &amp;&amp; e.key.equals(key)) {  
+                return e.value;  
+            }  
+        }  
+        return null;  
+    }  
+</code></pre>
+<p><a href="https://www.runoob.com/java/java-hashtable-class.html">Java Hashtable 类 | 菜鸟教程 (runoob.com)</a></p>
+<h3>HashMap、HashSet、Hashtable的区别</h3>
+<p>HashSet与HashMap的区别：</p>
+<table>
+<thead>
+<tr>
+<th>HashMap</th>
+<th>HashSet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实现了Map接口</td>
+<td>实现Set接口</td>
+</tr>
+<tr>
+<td>存储键值对</td>
+<td>仅存储对象</td>
+</tr>
+<tr>
+<td>调用put（）向map中添加元素</td>
+<td>调用add（）方法向Set中添加元素</td>
+</tr>
+<tr>
+<td>HashMap使用键（Key）计算Hashcode</td>
+<td>HashSet使用成员对象来计算hashcode值，对于两个对象来说hashcode可能相同，所以equals()方法用来判断对象的相等性，如果两个对象不同的话，那么返回false</td>
+</tr>
+<tr>
+<td>HashMap相对于HashSet较快，因为它是使用唯一的键获取对象</td>
+<td>HashSet较HashMap来说比较慢</td>
+</tr>
+</tbody>
+</table>
+<p>HashSet实现了Set接口，它不允许集合中有重复的值，当我们提到HashSet时，第一件事情就是在将对象存储在HashSet之前，要先确保对象重写equals()和hashCode()方法，这样才能比较对象的值是否相等，以确保set中没有储存相等的对象。如果我们没有重写这两个方法，将会使用这个方法的默认实现。</p>
+<p>Map中不允许重复的键。Map接口有两个基本的实现，HashMap和TreeMap。TreeMap保存了对象的排列次序，而HashMap则不能。HashMap允许键和值为null。</p>
+<p>HashSet 和 HashMap 之间有很多相似之处，对于 HashSet 而言，系统采用 Hash 算法决定集合元素的存储位置，这样可以保证能快速存、取集合元素；对于 HashMap 而言，系统 key-value 当成一个整体进行处理，系统总是根据 Hash 算法来计算 key-value 的存储位置，这样可以保证能快速存、取 Map 的 key-value 对。</p>
+<p>Hashtable和HashMap的区别：</p>
+<p>主要区别：线程安全性，同步(synchronization)，以及速度。</p>
+<p>HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null。Hashtable是线程安全的，多个线程可以共享一个Hashtable。</p>
+<p>HashMap的同步问题可通过Collections的一个静态方法得到解决，Map Collections.synchronizedMap(Map m) 返回一个同步的Map。</p>
+<p>HashMap的迭代器(Iterator)是fail-fast迭代器，而Hashtable的enumerator迭代器不是fail-fast的。fail-fast结构上更改时（删除或者插入一个元素），将会抛出ConcurrentModificationException异常。</p>
+<p>HashMap不能保证随着时间的推移Map中的元素次序是不变的。</p>
+<p><a href="https://blog.csdn.net/aimreant/article/details/80385178">(22条消息) HashMap、HashSet、Hashtable的区别_aimreant的专栏-CSDN博客_hashmap,hashset,hashtable的区别</a></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[数据结构-链表]]></title>
         <id>https://clownjerome.github.io/post/shu-ju-jie-gou-lian-biao/</id>
