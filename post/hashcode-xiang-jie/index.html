@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>HashCode详解 | 陈思羽</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://clownjerome.github.io/favicon.ico?v=1635516856104">
+<link rel="stylesheet" href="https://clownjerome.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="一、hashcode是什么？
+1、hash和hash表是什么？
+hash是一个函数，该函数中的实现就是一种算法，就是通过一系列的算法来得到一个hash值，这个时候，我们就需要知道另一个东西，hash表，通过hash算法得到的hash值就在这..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://clownjerome.github.io">
+        <img src="https://clownjerome.github.io/images/avatar.png?v=1635516856104" class="site-logo">
+        <h1 class="site-title">陈思羽</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      天道酬勤
+    </div>
+    <div class="site-footer">
+      欢迎来到陈思羽的个人博客 | <a class="rss" href="https://clownjerome.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HashCode详解</h2>
+            <div class="post-date">2021-10-12</div>
+            
+            <div class="post-content" v-pre>
+              <h3>一、hashcode是什么？</h3>
+<p>1、hash和hash表是什么？</p>
+<p>hash是一个函数，该函数中的实现就是一种算法，就是通过一系列的算法来得到一个hash值，这个时候，我们就需要知道另一个东西，<a href="#hat">hash</a>表，通过hash算法得到的hash值就在这张hash表中，也就是说，hash表就是所有的hash值组成的，有很多种hash函数，也就代表着有很多种算法得到hash值。</p>
+<p>2、hashcode</p>
+<p>hashcode就是通过hash函数得来的，通俗的说，就是通过某一种算法得到的，hashcode就是在hash表中有对应的位置。</p>
+<p>每个对象都有hashcode，对象的hashcode怎么得来的呢？</p>
+<p>首先一个对象肯定有物理地址，hashcode代表对象的地址说的是对象在hash表中的位置，物理地址说的对象存放在内存中的地址，那么对象如何得到hashcode呢？通过对象的内部地址(也就是物理地址)转换成一个整数，然后该整数通过hash函数的算法就得到了hashcode，所以，hashcode是什么呢？就是在hash表中对应的位置。这里如果还不是很清楚的话，举个例子，hash表中有 hashcode为1、hashcode为2、(...)3、4、5、6、7、8这样八个位置，有一个对象A，A的物理地址转换为一个整数17(这是假如)，就通过直接取余算法，17%8=1，那么A的hashcode就为1，且A就在hash表中1的位置。</p>
+<h3>二、hashcode有什么作用呢？</h3>
+<p>HashCode的存在主要是为了查找的快捷性，HashCode是用来在散列存储结构中确定对象的存储地址的。</p>
+<h3>三、equals方法和hashcode的关系？</h3>
+<p>先通过hashcode来比较，如果hashcode相等，那么就用equals方法来比较两个对象是否相等。</p>
+<p>1、如果两个对象equals相等，那么这两个对象的HashCode一定也相同。</p>
+<p>2、如果两个对象的HashCode相同，不代表两个对象就相同，只能说明这两个对象在散列存储结构中，存放于同一个位置。</p>
+<h3 id="hat">hash表</h3>
+<p>哈希表也叫散列表，哈希表是一种数据结构，它提供了快速的插入操作和查找操作，无论哈希表总中有多少条数据，插入和查找的时间复杂度都是为O(1)，因为哈希表的查找速度非常快，所以在很多程序中都有使用哈希表，例如拼音检查器。</p>
+<p>哈希表也有自己的缺点，哈希表是基于数组的，我们知道数组创建后扩容成本比较高，所以当哈希表被填满时，性能下降的比较严重。</p>
+<p>哈希表采用的是一种转换思想，其中一个中要的概念是如何将**「键」<strong>或者</strong>「关键字」<strong>转换成数组下标？在哈希表中，这个过程有哈希函数来完成，但是并不是每个</strong>「键」<strong>或者</strong>「关键字」<strong>都需要通过哈希函数来将其转换成数组下标，有些</strong>「键」<strong>或者</strong>「关键字」**可以直接作为数组的下标。</p>
+<p>hash函数</p>
+<p>哈希函数的作用是帮我们把非int的**「键」<strong>或者</strong>「关键字」**转化成int，可以用来做数组的下标。</p>
+<figure data-type="image" tabindex="1"><img src="https://clownjerome.github.io/post-images/1634003504347.png" alt="" loading="lazy"></figure>
+<p>哈希函数的写法有很多种，我们来看看**「HashMap」**中的哈希函数</p>
+<pre><code class="language-java">    static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);
+    }
+</code></pre>
+<p>**「HashMap」<strong>中利用了</strong>「hashCode」**来完成这个转换。哈希函数不管怎么实现，都应该满足下面三个基本条件：</p>
+<ul>
+<li>散列函数计算得到的散列值是一个非负整数</li>
+<li>如果 key1 = key2，那 hash(key1) == hash(key2)</li>
+<li>如果 key1 ≠ key2，那 hash(key1) ≠ hash(key2)</li>
+</ul>
+<p>第一点：因为数组的下标是从0开始，所以哈希函数生成的哈希值也应该是非负数</p>
+<p>第二点：同一个key生成的哈希值应该是一样的，因为我们需要通过key查找哈希表中的数据</p>
+<p>第三点：两个不一样的值通过哈希函数之后可能产生相同的值，因为我们把巨大的空间转出成较小的数组空间时，不能保证每个数字都映射到数组空白处。所以这里就会才生冲突，在哈希表中我们称之为哈希冲突</p>
+<p>hash冲突</p>
+<p>哈希冲突是不可避免的，我们常用解决哈希冲突的方法有两种**「开放地址法」<strong>和</strong>「链表法」**</p>
+<p>开放地址法</p>
+<p>在开放地址法中，若数据不能直接存放在哈希函数计算出来的数组下标时，就需要寻找其他位置来存放。在开放地址法中有三种方式来寻找其他的位置，分别是**「线性探测」<strong>、</strong>「二次探测」<strong>、</strong>「再哈希法」**</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://clownjerome.github.io/post/java-zhong-string-yu-stringbuffer-he-stringbuilder-de-qu-bie/">
+                  <h3 class="post-title">
+                    Java 中 String 与 StringBuffer 和 StringBuilder 的区别
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>

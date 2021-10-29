@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>数据结构-链表 | 陈思羽</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://clownjerome.github.io/favicon.ico?v=1635516856104">
+<link rel="stylesheet" href="https://clownjerome.github.io/styles/main.css">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="一、具体用法
+链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的地址。
+链表可分为单向链表和双向链表。
+一个单向链表包含两个值: 当前节点的值和一个指向下..." />
+    <meta name="keywords" content="数据结构,JAVA" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://clownjerome.github.io">
+        <img src="https://clownjerome.github.io/images/avatar.png?v=1635516856104" class="site-logo">
+        <h1 class="site-title">陈思羽</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      天道酬勤
+    </div>
+    <div class="site-footer">
+      欢迎来到陈思羽的个人博客 | <a class="rss" href="https://clownjerome.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">数据结构-链表</h2>
+            <div class="post-date">2021-10-29</div>
+            
+            <div class="post-content" v-pre>
+              <h3>一、具体用法</h3>
+<p>链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的地址。</p>
+<p>链表可分为单向链表和双向链表。</p>
+<p>一个单向链表包含两个值: 当前节点的值和一个指向下一个节点的链接。</p>
+<figure data-type="image" tabindex="1"><img src="https://clownjerome.github.io/post-images/1635516618565.png" alt="" loading="lazy"></figure>
+<p>一个双向链表有三个整数值: 数值、向后的节点链接、向前的节点链接。</p>
+<figure data-type="image" tabindex="2"><img src="https://clownjerome.github.io/post-images/1635516627036.png" alt="" loading="lazy"></figure>
+<p>Java LinkedList（链表） 类似于 ArrayList，是一种常用的数据容器。</p>
+<p>与 ArrayList 相比，LinkedList 的增加和删除的操作效率更高，而查找和修改的操作效率较低。</p>
+<h4>以下情况使用 ArrayList :</h4>
+<ul>
+<li>频繁访问列表中的某一个元素。</li>
+<li>只需要在列表末尾进行添加和删除元素操作。</li>
+</ul>
+<h4>以下情况使用 LinkedList :</h4>
+<ul>
+<li>你需要通过循环迭代来访问列表中的某些元素。</li>
+<li>需要频繁的在列表开头、中间、末尾等位置进行添加和删除元素操作。</li>
+</ul>
+<figure data-type="image" tabindex="3"><img src="https://clownjerome.github.io/post-images/1635516635619.png" alt="" loading="lazy"></figure>
+<p>LinkedList 继承了 AbstractSequentialList 类。</p>
+<p>LinkedList 实现了 Queue 接口，可作为队列使用。</p>
+<p>LinkedList 实现了 List 接口，可进行列表的相关操作。</p>
+<p>LinkedList 实现了 Deque 接口，可作为队列使用。</p>
+<p>LinkedList 实现了 Cloneable 接口，可实现克隆。</p>
+<p>LinkedList 实现了 java.io.Serializable 接口，即可支持序列化，能通过序列化去传输。</p>
+<h3>二、实现方法-代码实现</h3>
+<h4>创建链表</h4>
+<p>链表中的节点的定义：</p>
+<pre><code class="language-java">class Node {
+        T data;
+        Node next = null;//下一个节点
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        public Node() {
+        }
+    }
+</code></pre>
+<h4 id="插入元素">插入元素</h4>
+<p>首先判断是否是一个空链表，如果是，则创建新链表，并将数据赋值给新节点，否则在末尾追加，或者在中间任意位置处插入。</p>
+<ul>
+<li>在末尾追加</li>
+</ul>
+<pre><code class="language-java">public boolean add(T data) {
+        Node newNode = new Node(data);
+        if (null == head) {
+            head = newNode;
+            return true;
+        }
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+        length++;
+        return true;
+    }
+</code></pre>
+<ul>
+<li>在中间任意位置插入</li>
+</ul>
+<pre><code class="language-java">public boolean insert(int index, T data) {
+        Node newNode = new Node(data);
+        //if index=1, special opearate
+        if (index == 1) {
+            if (head == null) { //head is not existed
+                head = newNode;
+                return true;
+            } else { //head is existed
+                Node temp = head;
+                newNode.next = temp;
+                head = newNode;
+                return true;
+            }
+        }
+        //index not true -&gt; false
+        if (index &lt; 1 || index &gt; this.length()) {
+            return false;
+        }
+        int count = 1;//count the current node
+        Node temp = head;
+        while (count &lt; index) {
+            count += 1;
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+        length++;
+        return true;
+    }
+</code></pre>
+<h4 id="删除元素">删除元素</h4>
+<h5 id="方法1">方法1</h5>
+<pre><code class="language-java">Node pre = head;
+Node cur = head.next;
+while (cur != null) {
+    if (cur.data == data) {
+        foundNum++;
+        pre.next = cur.next;
+    }
+    pre = cur;
+    cur = cur.next;
+}
+</code></pre>
+<h5 id="方法2">方法2</h5>
+<pre><code class="language-java">Node temp = head;
+while (temp != null) {
+    if (temp.data == data) {
+        foundNum += 1;
+
+        T tempData = temp.data;
+        temp.data = temp.next.data;
+        temp.next.data = tempData;
+        temp.next = temp.next.next;
+
+        length--;
+        return true;
+    }
+    temp = temp.next;
+}
+</code></pre>
+<h5>整体代码</h5>
+<pre><code class="language-java">    /**
+     * 删除链表中的节点
+     */
+    public static ListNode removeElements(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+
+        //定义前指针 是为了删除节点
+        ListNode pre = null;
+        
+        //定义next是为了指针后移
+        ListNode next;
+        
+        for (ListNode i = head; i != null; i = next) {
+            next = i.next;
+            if (i.val == val) {
+                //这个判断说明头一个节点，就需要删除，因此头指针后移
+                if (head.equals(i)) {
+                    head = head.next;
+                }
+
+                //前节点next指向后节点
+                if (pre != null) {
+                    pre.next = i.next;
+                }
+
+                i.next = null;
+            } else {
+                pre = i;
+            }
+        }
+
+        return head;
+    }
+</code></pre>
+<h4 id="查询元素">查询元素</h4>
+<p>对着链表中的元素一个一个遍历，直到找到为止，如果找不到则返回false：</p>
+<pre><code class="language-java">public int search(T data) {
+        if (length == 0) {
+            return -1;
+        }
+        int index = 0;
+        int foundIndex = 0;
+        Node temp = head;
+        while (temp.next != null) {
+            index++;
+            if (temp.next.data == data) {
+                foundIndex++;
+                return index;
+            }
+            temp = temp.next;
+        }
+        if (foundIndex == 0)
+            return -1;
+        return index;
+    }
+</code></pre>
+<h4 id="打印元素">打印元素</h4>
+<pre><code class="language-java">public boolean printNode() {
+        Node temp = head;
+        while (temp.next != null) {
+            System.out.print(temp.next.data + &quot;\t&quot;);
+            temp = temp.next;
+        }
+        return true;
+    }
+</code></pre>
+<h4>完整代码</h4>
+<pre><code class="language-java">public class MyLinkNode&lt;T&gt; {
+    private int length = 0;
+
+    Node head = new Node();
+
+    public Node getHead() {
+        return head;
+    }
+
+    class Node {
+        T data;
+        Node next = null;//下一个节点
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        public Node() {
+        }
+    }
+
+    public boolean add(T data) {
+        Node newNode = new Node(data);
+        if (null == head) {
+            head = newNode;
+            return true;
+        }
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = newNode;
+        length++;
+        return true;
+    }
+
+    public boolean insert(int index, T data) {
+        Node newNode = new Node(data);
+        //if index=1, special opearate
+        if (index == 1) {
+            if (head == null) { //head is not existed
+                head = newNode;
+                return true;
+            } else { //head is existed
+                Node temp = head;
+                newNode.next = temp;
+                head = newNode;
+                return true;
+            }
+        }
+        //index not true -&gt; false
+        if (index &lt; 1 || index &gt; this.length()) {
+            return false;
+        }
+        int count = 1;//count the current node
+        Node temp = head;
+        while (count &lt; index) {
+            count += 1;
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+        length++;
+        return true;
+    }
+
+    public boolean printNode() {
+        Node temp = head;
+        while (temp.next != null) {
+            System.out.print(temp.next.data + &quot;\t&quot;);
+            temp = temp.next;
+        }
+        return true;
+    }
+
+    public int length() {
+        return length;
+    }
+
+    public boolean delete(T data) {
+        if (head == null) {
+            return false;
+        }
+        int foundNum = 0;
+        /*
+        方式1：
+        使用两个指针，一个指针指向当前指针，一个指针当前指针的前驱，当删除时，直接忽略需要删除的节点即可
+         */
+        Node pre = head;
+        Node cur = head.next;
+        while (cur != null) {
+            if (cur.data == data) {
+                foundNum++;
+                pre.next = cur.next;
+            }
+            pre = cur;
+            cur = cur.next;
+        }
+        /*
+        方式2：将要删除的节点(假设要删除的节点的位置3)的下一个节点（位置是4）的数据赋值到当前要删除的节点，
+        此时当前节点（位置是3）的数据是下一节点（位置是4）的数据，然后将当前节点（位置是3）的后驱指向一下节点（位置是4）
+        的下一节点（位置是5）
+         */
+//        Node temp = head;
+//        while (temp != null) {
+//            if (temp.data == data) {
+//                foundNum += 1;
+//
+//                T tempData = temp.data;
+//                temp.data = temp.next.data;
+//                temp.next.data = tempData;
+//                temp.next = temp.next.next;
+//
+//                length--;
+//                return true;
+//            }
+//            temp = temp.next;
+//        }
+
+        if (foundNum == 0) {
+            System.out.println(&quot;not found data -&gt;&quot; + data);
+            return false;
+        }
+        length--;
+        return true;
+    }
+
+    public boolean delete(int index) {
+        if (index == 1) {
+
+            Node temp = head;
+            head = temp.next;
+            System.out.println(head.data + &quot;---&quot; + head.next.toString());
+            return true;
+        }
+        if (index &lt; 1 || index &gt;= this.length()) {
+            return false;
+        }
+        int count = 0;
+        Node temp = head;
+        while (count &lt; index) {
+            count++;
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        length--;
+
+        return true;
+    }
+
+
+
+    public int search(T data) {
+        if (length == 0) {
+            return -1;
+        }
+        int index = 0;
+        int foundIndex = 0;
+        Node temp = head;
+        while (temp.next != null) {
+            index++;
+            if (temp.next.data == data) {
+                foundIndex++;
+                return index;
+            }
+            temp = temp.next;
+        }
+        if (foundIndex == 0)
+            return -1;
+        return index;
+    }
+
+    public boolean update(T oldData, T data) {
+        if (length == 0)
+            return false;
+        int foundNum = 0;
+        Node temp = head;
+        if (oldData instanceof String) {
+            while (temp.next != null) {
+                if ((oldData.equals(temp.data))) {
+                    foundNum++;
+                    temp.data = data;
+                    return true;
+                }
+                temp = temp.next;
+            }
+        } else if (oldData instanceof Number) {
+            while (temp.next != null) {
+                if (temp.data == oldData) {
+                    foundNum++;
+                    temp.data = data;
+                    return true;
+                }
+                temp = temp.next;
+            }
+        }
+        if (foundNum == 0)
+            return false;
+        return true;
+
+    }
+}
+</code></pre>
+<p>测试java文件：</p>
+<pre><code class="language-java">public class TestLink {
+    public static void main(String[] args) {
+        MyLinkNode&lt;String&gt; myLinkNode = new MyLinkNode&lt;&gt;();
+        myLinkNode.add(&quot;1&quot;);
+        myLinkNode.add(&quot;2&quot;);
+        myLinkNode.add(&quot;3&quot;);
+        myLinkNode.add(&quot;4&quot;);
+        myLinkNode.insert(3,&quot;insert&quot;);
+        myLinkNode.printNode();
+        System.out.println(&quot;length=&quot;+myLinkNode.length());
+        System.out.println(&quot;\n&quot;);
+        myLinkNode.delete(&quot;insert&quot;);
+        myLinkNode.printNode();
+        System.out.println(&quot;length=&quot;+myLinkNode.length());
+
+    }
+}
+</code></pre>
+<h4>单链表的实现</h4>
+<pre><code class="language-java">package com.zjn.LinkAndQueue;
+
+/**
+ * 自定义链表设计
+ * 
+ * @author zjn
+ *
+ */
+public class MyLink {
+    Node head = null; // 头节点
+
+    /**
+     * 链表中的节点，data代表节点的值，next是指向下一个节点的引用
+     * 
+     * @author zjn
+     *
+     */
+    class Node {
+        Node next = null;// 节点的引用，指向下一个节点
+        int data;// 节点的对象，即内容
+
+        public Node(int data) {
+            this.data = data;
+        }
+    }
+
+    /**
+     * 向链表中插入数据
+     * 
+     * @param d
+     */
+    public void addNode(int d) {
+        Node newNode = new Node(d);// 实例化一个节点
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node tmp = head;
+        while (tmp.next != null) {
+            tmp = tmp.next;
+        }
+        tmp.next = newNode;
+    }
+
+    /**
+     * 
+     * @param index:删除第index个节点
+     * @return
+     */
+    public boolean deleteNode(int index) {
+        if (index &lt; 1 || index &gt; length()) {
+            return false;
+        }
+        if (index == 1) {
+            head = head.next;
+            return true;
+        }
+        int i = 1;
+        Node preNode = head;
+        Node curNode = preNode.next;
+        while (curNode != null) {
+            if (i == index) {
+                preNode.next = curNode.next;
+                return true;
+            }
+            preNode = curNode;
+            curNode = curNode.next;
+            i++;
+        }
+        return false;
+    }
+
+    /**
+     * 
+     * @return 返回节点长度
+     */
+    public int length() {
+        int length = 0;
+        Node tmp = head;
+        while (tmp != null) {
+            length++;
+            tmp = tmp.next;
+        }
+        return length;
+    }
+
+    /**
+     * 在不知道头指针的情况下删除指定节点
+     * 
+     * @param n
+     * @return
+     */
+    public boolean deleteNode11(Node n) {
+        if (n == null || n.next == null)
+            return false;
+        int tmp = n.data;
+        n.data = n.next.data;
+        n.next.data = tmp;
+        n.next = n.next.next;
+        System.out.println(&quot;删除成功！&quot;);
+        return true;
+    }
+
+    public void printList() {
+        Node tmp = head;
+        while (tmp != null) {
+            System.out.println(tmp.data);
+            tmp = tmp.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        MyLink list = new MyLink();
+        list.addNode(5);
+        list.addNode(3);
+        list.addNode(1);
+        list.addNode(2);
+        list.addNode(55);
+        list.addNode(36);
+        System.out.println(&quot;linkLength:&quot; + list.length());
+        System.out.println(&quot;head.data:&quot; + list.head.data);
+        list.printList();
+        list.deleteNode(4);
+        System.out.println(&quot;After deleteNode(4):&quot;);
+        list.printList();
+    }
+}
+</code></pre>
+<h4>经典问题</h4>
+<h5>反转链表</h5>
+<p>data域：存储数据元素信息的域称为数据域；</p>
+<p>next域：存储直接后继位置的域称为指针域，它是存放结点的直接后继的地址（位置）的指针域（链域）。</p>
+<p>data域+ next域：组成数据ai的存储映射，称为结点；</p>
+<p>创建一结点类，其Java代码如下：</p>
+<pre><code class="language-java">class Node {
+    private int Data;// 数据域
+    private Node Next;// 指针域
+    public Node(int Data) {
+        // super();
+        this.Data = Data;
+    }
+    public int getData() {
+        return Data;
+    }
+    public void setData(int Data) {
+        this.Data = Data;
+    }
+
+    public Node getNext() {
+        return Next;
+    }
+    public void setNext(Node Next) {
+        this.Next = Next;
+    }
+}
+</code></pre>
+<h4>反转的方法-递归反转法</h4>
+<pre><code class="language-java">    /**
+     * 递归，在反转当前节点之前先反转后续节点
+     */
+    public static Node recursiveReverse(Node currentNode) {
+        if (currentNode == null || currentNode.getNext() == null) {
+            return currentNode;
+        }
+
+        Node returnNode = recursiveReverse(currentNode.getNext());
+        //这里是重点。
+        //当前节点（currentNode）的下一个节点，正好是返回节点returnNode的最后一个节点
+        currentNode.getNext().setNext(currentNode);
+        currentNode.setNext(null);
+        return returnNode;
+    }
+</code></pre>
+<h4>反转的方法-遍历反转法</h4>
+<pre><code class="language-java">    //思路：
+    //当前节点的next不为null，则需要进行反转
+    //反转即：需要将next的next设置为当前节点
+
+    public static Node cycleReverse(Node currentNode) {
+
+        if (currentNode == null) {
+            return currentNode;
+        }
+
+        //专门记录下一个节点（依次判断下个节点是否为空）
+        Node nextNode = currentNode.getNext();
+
+        //记录next的next用于下次循环使用
+        Node temp;
+
+        //准备好第一个节点（第一个节点不需要去反转）
+        currentNode.setNext(null);
+        Node finalNode = currentNode;//最终返回的链表
+
+        //如果下一个几点不为空，说明还有节点，则进行反转
+        while (nextNode != null) {
+            //记录元素，为了指针下移
+            temp = nextNode.getNext();
+
+            //反转链表
+            nextNode.setNext(finalNode);
+            finalNode = nextNode;
+
+            //指针下移
+            nextNode = temp;
+        }
+
+        return finalNode;
+    }
+</code></pre>
+<h4>奇偶链表</h4>
+<p>给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。</p>
+<p>请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。</p>
+<ul>
+<li>应当保持奇数节点和偶数节点的相对顺序。</li>
+<li>链表的第一个节点视为奇数节点，第二个节点视为偶数节点，以此类推。</li>
+</ul>
+<pre><code class="language-java">    public static ListNode oddEvenList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = head.next;
+
+
+        while (odd.next != null &amp;&amp; even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+</code></pre>
+<h4>回文链表</h4>
+<pre><code class="language-java">    /**
+     * 断一个链表是否为回文链表
+     * 输入: 1-&gt;2-&gt;2-&gt;1
+     * 输出: true
+     */
+    public static boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        ListNode reverseNode = null;//指向反转的链表
+        ListNode nomalNode;//指向后面后半截链表
+
+        if (head.next.next == null) {
+            reverseNode = head;
+            nomalNode = head.next;
+            reverseNode.next = null;
+        } else {
+            //快慢指针找中间值
+            //顺便反转前半截链表
+            ListNode slow = head;
+            ListNode fast = head;
+
+            ListNode tempSlow;
+            ListNode tempFast;
+
+
+            while (fast.next != null &amp;&amp; fast.next.next != null) {
+                tempSlow = slow.next;
+                tempFast = fast.next.next;
+
+                slow.next = reverseNode;
+                reverseNode = slow;
+
+                slow = tempSlow;
+                fast = tempFast;
+            }
+
+
+            tempSlow = slow.next;
+            slow.next = reverseNode;
+            reverseNode = slow;
+
+
+            //考虑链表是奇数长度链表
+            if (fast.next == null) {
+                reverseNode = reverseNode.next;
+            }
+
+            nomalNode = tempSlow;
+        }
+
+        //遍历后半截找不同
+        while (nomalNode != null &amp;&amp; reverseNode != null) {
+            if (nomalNode.val != reverseNode.val) {
+                return false;
+            }
+            nomalNode = nomalNode.next;
+            reverseNode = reverseNode.next;
+        }
+
+        return true;
+</code></pre>
+<h5>查找单链表的中间节点</h5>
+<p>采用快慢指针的方式查找单链表的中间节点，快指针一次走两步，慢指针一次走一步，当快指针走完时，慢指针刚好到达中间节点。</p>
+<pre><code class="language-java">/**
+     * 查找单链表的中间节点
+     * 
+     * @param head
+     * @return
+     */
+    public Node SearchMid(Node head) {
+        Node p = this.head, q = this.head;
+        while (p != null &amp;&amp; p.next != null &amp;&amp; p.next.next != null) {
+            p = p.next.next;
+            q = q.next;
+        }
+        System.out.println(&quot;Mid:&quot; + q.data);
+        return q;
+    }
+</code></pre>
+<h5>查找倒数第k个元素</h5>
+<p>采用两个指针P1,P2，P1先前移K步，然后P1、P2同时移动，当p1移动到尾部时，P2所指位置的元素即倒数第k个元素 。</p>
+<pre><code class="language-java">/**
+     * 查找倒数 第k个元素
+     * 
+     * @param head
+     * @param k
+     * @return
+     */
+    public Node findElem(Node head, int k) {
+        if (k &lt; 1 || k &gt; this.length()) {
+            return null;
+        }
+        Node p1 = head;
+        Node p2 = head;
+        for (int i = 0; i &lt; k; i++)// 前移k步
+            p1 = p1.next;
+        while (p1 != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p2;
+    }
+</code></pre>
+<h5>对链表进行排序</h5>
+<pre><code class="language-java">/**
+     * 排序
+     * 
+     * @return
+     */
+    public Node orderList() {
+        Node nextNode = null;
+        int tmp = 0;
+        Node curNode = head;
+        while (curNode.next != null) {
+            nextNode = curNode.next;
+            while (nextNode != null) {
+                if (curNode.data &gt; nextNode.data) {
+                    tmp = curNode.data;
+                    curNode.data = nextNode.data;
+                    nextNode.data = tmp;
+                }
+                nextNode = nextNode.next;
+            }
+            curNode = curNode.next;
+        }
+        return head;
+    }
+</code></pre>
+<h5>删除链表中的重复节点</h5>
+<pre><code class="language-java">/**
+     * 删除重复节点
+     */
+    public void deleteDuplecate(Node head) {
+        Node p = head;
+        while (p != null) {
+            Node q = p;
+            while (q.next != null) {
+                if (p.data == q.next.data) {
+                    q.next = q.next.next;
+                } else
+                    q = q.next;
+            }
+            p = p.next;
+        }
+
+    }
+</code></pre>
+<h5>判断链表是否有环，有环情况下找出环的入口节点</h5>
+<pre><code class="language-java">/**
+     * 判断链表是否有环，单向链表有环时，尾节点相同
+     * 
+     * @param head
+     * @return
+     */
+    public boolean IsLoop(Node head) {
+        Node fast = head, slow = head;
+        if (fast == null) {
+            return false;
+        }
+        while (fast != null &amp;&amp; fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                System.out.println(&quot;该链表有环&quot;);
+                return true;
+            }
+        }
+        return !(fast == null || fast.next == null);
+    }
+
+    /**
+     * 找出链表环的入口
+     * 
+     * @param head
+     * @return
+     */
+    public Node FindLoopPort(Node head) {
+        Node fast = head, slow = head;
+        while (fast != null &amp;&amp; fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+                break;
+        }
+        if (fast == null || fast.next == null)
+            return null;
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
+</code></pre>
+<h4>双链表节点结构</h4>
+<pre><code class="language-java">// Definition for doubly-linked list.
+class DoublyListNode {
+    int val;
+    DoublyListNode next, prev;
+    DoublyListNode(int x) {val = x;}
+}
+</code></pre>
+<h4>合并两个有序链表</h4>
+<pre><code class="language-java">   /**
+     * 合并两个有序链表
+     */
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        if (l1 == null) {
+            return l2;
+        }
+
+        if (l2 == null) {
+            return l1;
+        }
+
+        
+        ListNode temp1 = l1;
+        ListNode temp2 = l2;
+        ListNode mergeListNode;
+        if (l1.val &gt; l2.val) {
+            mergeListNode = l2;
+            temp2 = l2.next;
+        } else {
+            mergeListNode = l1;
+            temp1 = l1.next;
+        }
+        ListNode mergeListNodePointer = mergeListNode;
+
+
+        //每次循环只前进一个指针
+        while (temp1 != null &amp;&amp; temp2 != null) {
+            if (temp1.val &gt; temp2.val) {
+                mergeListNodePointer.next = temp2;
+                mergeListNodePointer=mergeListNodePointer.next;
+                temp2 = temp2.next;
+            } else {
+                mergeListNodePointer.next = temp1;
+                mergeListNodePointer=mergeListNodePointer.next;
+                temp1 = temp1.next;
+            }
+        }
+
+        //将剩余的节点拼接起来
+        if (temp1 != null) {
+            mergeListNodePointer.next = temp1;
+        }
+
+        if (temp2 != null) {
+            mergeListNodePointer.next = temp2;
+        }
+
+        return mergeListNode;
+    }
+</code></pre>
+<h4>java链表两数相加</h4>
+<h5>位数按照逆序方式存储</h5>
+<p>给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。</p>
+<p>你可以假设除了数字 0 之外，这两个数字都不会以零开头。<br>
+示例：</p>
+<p>输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>
+输出：7 -&gt; 0 -&gt; 8<br>
+原因：342 + 465 = 807</p>
+<pre><code class="language-java">class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+ 
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode  listNode= new ListNode(0);
+        ListNode p = new ListNode(0);
+        p = listNode;
+        int sum = 0;
+ 
+        while (l1 != null || l2 != null || sum != 0) {
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            p.next = new ListNode(sum % 10);
+            sum = sum / 10;
+            p = p.next;
+        }
+        return listNode.next;
+    }
+}
+</code></pre>
+<h5>位数按照正序方式存储</h5>
+<p>给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。<br>
+你可以假设除了数字 0 之外，这两个数字都不会以零开头。<br>
+示例：</p>
+<p>输入：(7 -&gt; 2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>
+输出：7 -&gt; 8 -&gt; 0 -&gt; 7</p>
+<pre><code class="language-java">  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    Stack&lt;Integer&gt; stack1=new Stack&lt;&gt;();
+    Stack&lt;Integer&gt; stack2=new Stack&lt;&gt;();
+
+    while(l1!=null){
+        stack1.push(l1.val);
+        l1=l1.next;
+    }
+    while(l2!=null){
+        stack2.push(l2.val);
+        l2=l2.next;
+    }
+
+
+    ListNode temp=null;
+    int isCarry=0;
+    while(!stack1.isEmpty()||!stack2.isEmpty()||isCarry&gt;0){
+        int sum=(stack1.isEmpty()?0:stack1.pop())+
+        (stack2.isEmpty()?0:stack2.pop())+isCarry;
+     ListNode n=new ListNode(sum%10);
+    isCarry=sum/10;
+       n.next=temp;
+       temp=n;
+    }
+        return temp;
+    }
+</code></pre>
+<h5>常用方法：</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">public boolean add(E e)</td>
+<td style="text-align:left">链表末尾添加元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public void add(int index, E element)</td>
+<td style="text-align:left">向指定位置插入元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean addAll(Collection c)</td>
+<td style="text-align:left">将一个集合的所有元素添加到链表后面，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean addAll(int index, Collection c)</td>
+<td style="text-align:left">将一个集合的所有元素添加到链表的指定位置后面，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public void addFirst(E e)</td>
+<td style="text-align:left">元素添加到头部。</td>
+</tr>
+<tr>
+<td style="text-align:left">public void addLast(E e)</td>
+<td style="text-align:left">元素添加到尾部。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean offer(E e)</td>
+<td style="text-align:left">向链表末尾添加元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean offerFirst(E e)</td>
+<td style="text-align:left">头部插入元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean offerLast(E e)</td>
+<td style="text-align:left">尾部插入元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public void clear()</td>
+<td style="text-align:left">清空链表。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E removeFirst()</td>
+<td style="text-align:left">删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E removeLast()</td>
+<td style="text-align:left">删除并返回最后一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean remove(Object o)</td>
+<td style="text-align:left">删除某一元素，返回是否成功，成功为 true，失败为 false。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E remove(int index)</td>
+<td style="text-align:left">删除指定位置的元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E poll()</td>
+<td style="text-align:left">删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E remove()</td>
+<td style="text-align:left">删除并返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public boolean contains(Object o)</td>
+<td style="text-align:left">判断是否含有某一元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E get(int index)</td>
+<td style="text-align:left">返回指定位置的元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E getFirst()</td>
+<td style="text-align:left">返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E getLast()</td>
+<td style="text-align:left">返回最后一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public int indexOf(Object o)</td>
+<td style="text-align:left">查找指定元素从前往后第一次出现的索引。</td>
+</tr>
+<tr>
+<td style="text-align:left">public int lastIndexOf(Object o)</td>
+<td style="text-align:left">查找指定元素最后一次出现的索引。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E peek()</td>
+<td style="text-align:left">返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E element()</td>
+<td style="text-align:left">返回第一个元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E peekFirst()</td>
+<td style="text-align:left">返回头部元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E peekLast()</td>
+<td style="text-align:left">返回尾部元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public E set(int index, E element)</td>
+<td style="text-align:left">设置指定位置的元素。</td>
+</tr>
+<tr>
+<td style="text-align:left">public Object clone()</td>
+<td style="text-align:left">克隆该列表。</td>
+</tr>
+<tr>
+<td style="text-align:left">public Iterator descendingIterator()</td>
+<td style="text-align:left">返回倒序迭代器。</td>
+</tr>
+<tr>
+<td style="text-align:left">public int size()</td>
+<td style="text-align:left">返回链表元素个数。</td>
+</tr>
+<tr>
+<td style="text-align:left">public ListIterator listIterator(int index)</td>
+<td style="text-align:left">返回从指定位置开始到末尾的迭代器。</td>
+</tr>
+<tr>
+<td style="text-align:left">public Object[] toArray()</td>
+<td style="text-align:left">返回一个由链表元素组成的数组。</td>
+</tr>
+<tr>
+<td style="text-align:left">public T[] toArray(T[] a)</td>
+<td style="text-align:left">返回一个由链表元素转换类型而成的数组。</td>
+</tr>
+</tbody>
+</table>
+<h3>三、应用场景</h3>
+<p>使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。</p>
+<h3>四、空间和时间复杂度</h3>
+<p>由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+<p>这里我们提供链表和其他数据结构（包括数组，队列和栈）之间时间复杂度的比较：</p>
+<figure data-type="image" tabindex="4"><img src="https://clownjerome.github.io/post-images/1635516586310.png" alt="" loading="lazy"></figure>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://clownjerome.github.io/tag/2LOXOv2T2/" class="tag">
+                    数据结构
+                  </a>
+                
+                  <a href="https://clownjerome.github.io/tag/qtTX93dUH/" class="tag">
+                    JAVA
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://clownjerome.github.io/post/hashcode-xiang-jie/">
+                  <h3 class="post-title">
+                    HashCode详解
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
+  </body>
+</html>
